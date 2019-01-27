@@ -12,7 +12,7 @@ function getNum (num){
 	var before = String(res)[String(res).length - 2];
 	//alert (before);
 	var none = undefined;
-	if (last == '0' && (before == none || before == '+') && num != '.') {
+	if (last == '0' && (before == none || before == '+' || before == '-' || before == '*' || before == '/') && num != '.') {
 		return;
 		}	
 	setSizeId('display1', res);
