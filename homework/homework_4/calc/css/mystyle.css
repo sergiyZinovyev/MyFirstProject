@@ -1,0 +1,191 @@
+
+.calc {
+	margin: 20px;
+	width: 320px;
+	height: 499px;
+	background-color: #ececec;
+	border: 1px #888888 solid;
+	font-family: sans-serif;
+}
+/*---------------------------------------------*/
+.head_c{
+	display: flex;
+	justify-content: space-between;
+	height: 6.53846153846154%;
+}
+.name{
+	font-size: 12px;
+	padding: 2%;
+	box-sizing: border-box;
+}
+.head_menu{
+	display: flex;
+	width: 40%;
+}
+.butt_h_m{
+	display: flex;
+	height: 100%;
+	width: 33.3333%;
+	justify-content: center;
+	align-items: center;
+}
+.sq{
+	width: 9px;
+	height: 9px;
+	border: 1px solid #000000;
+}
+.X1{
+	position: relative;
+	transform: rotate(45deg);
+	left: 9px;
+}
+.X2{
+	position: relative;
+	transform: rotate(-45deg);
+	right: 9px;
+}
+.butt_h_m:hover{
+	background: #d9d9d9;
+}
+.butt_h_m_X:hover{
+	background: #e63900;
+	color: #ffffff;
+}
+/*---------------------------------------------*/
+.nav_c{
+	display: flex;
+	height: 6.53846153846154%;
+	justify-content: space-between;
+	/*color: #888888;*/
+}
+.menu{
+	display: flex;
+	justify-content: space-between;
+}
+.butt_menu{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	padding-left: 25%;
+	padding-right: 25%;
+}
+.butt_menu:hover{
+	background: #d9d9d9;
+}
+.text_menu{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 3px;
+	font-size: 18px;
+}
+.butt_history{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20%
+	height: 100%;
+	padding-left: 4%;
+	padding-right: 4%;
+	font-size: 20px;
+}
+.butt_history:hover{
+	background: #d9d9d9;
+	border: 1px solid #b3b3b3;
+}
+/*---------------------------------------------*/
+.input2_c{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 6.53846153846154%;
+}
+#display2{
+	display: block;
+	border: none;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	width: 95%;
+	height: 90%;
+	text-align: right;
+	font-size: 16px;
+	font-family: sans-serif;
+	color: #888888;
+}
+/*---------------------------------------------*/
+.input1_c{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 12.3076923076923%;
+}
+#display1{
+	display: block;
+	border: none;
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	width: 95%;
+	height: 90%;
+	text-align: right;
+	font-size: 50px;
+	font-family: sans-serif;
+}
+/*---------------------------------------------*/
+.memory_c{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: 6.53846153846154%;
+	padding: 4px;
+	box-sizing: border-box;
+}
+.butt_m{ /*кнопки пам'яті*/
+  display: block;
+  border: none;
+	background: none;
+	width: 16%;
+	height: 98%;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+.butt_m:hover{
+	background: #d9d9d9;
+	border: 1px solid #b3b3b3;
+}
+/*---------------------------------------------*/
+.buttons_c{ /*блок з основними кнопками*/
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-between;
+	height: 61.5384615384615%;
+	padding: 4px;
+	box-sizing: border-box;
+
+}
+.butt{ /*загальний стиль основних кнопок*/
+  display: block;
+  border: none;
+	background: #f4f4f4;
+	width: 24.5%;
+	height: 16%;
+	font-size: 18px;
+	font-family: sans-serif;
+}
+.b2{ /*додатковий стиль для кнопок з цифрами*/
+	background: #fbfbfb;
+	font-size: 26px;
+}
+.butt:hover{
+	background: #d9d9d9;
+	border: 1px solid #b3b3b3;
+}
+.func:hover{  /*додатковий стиль для кнопок з функціями*/
+	background: #0066ff;
+	color: #ffffff;
+}
+/*---------------------------------------------*/

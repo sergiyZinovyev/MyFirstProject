@@ -1,0 +1,28 @@
+body, h1, header{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: yellow;
+}
+header{
+		background: orange;
+		text-align: center;
+		padding: 1px;
+		/*margin-top: 0px;
+		margin: 0px;*/
+}
+section{
+	padding: 10px;
+	text-align: center;
+}
+td{
+	padding: 10px;
+	vertical-align: top;
+}
+.lbl{
+	text-align: right;
+}
+.inp{
+	text-align: left;
+}

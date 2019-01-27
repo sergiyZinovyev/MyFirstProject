@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>tables</title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="nav">
+		  <input type="button" value="Таблична верстка" class="check" onClick="visibleElementByClass('vis')">
+		  <input type="button" value="Блочна верстка (float: left)" class="check" onClick="visibleElementByClass('vis', 1)">
+		  <input type="button" value="Flex-Box верстка" class="check" onClick="visibleElementByClass('vis', 2)">
+		  <input type="button" value="(float: left) за допомогою JS" class="check" onClick="visibleElementByClass('vis', 3)">
+		  <input type="button" value="(float: left) JS (з картинками)" class="check" onClick="visibleElementByClass('vis', 4)">
+		  <input type="button" value="Bootstrap верстка" class="check" onClick="visibleElementByClass('vis', 5)">
+		  <input type="button" value="М Е Н Ю" class="check2" onClick="">
+	  	</div>
+		 
+		  	<H1>Оригінал таблиці jpg</H1>
+		  	<div class="layout">
+		    	<img src="img/Table-layout.png"></img>
+		  	</div>
+			
+		  <div class='vis'>
+				<H1>Таблична верстка</H1>
+				<table>
+					<tr>
+						<td rowspan="2" class="big_cell">1</td>
+						<td rowspan="2" class="big_cell">2</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<td rowspan="2">8</td>
+						<td rowspan="2"></td>
+						<td rowspan="2"></td>
+					</tr>
+					<tr>
+						<td rowspan="2">3</td>
+						<td rowspan="2">4</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='vis'>
+				<H1>Блочна верстка (float: left)</H1>
+				<div class="head_block">
+					<div class="gen_block">
+						<div class="block">1</div>
+						<div class="block">2</div>
+						<div class="block">3</div>
+						<div class="block">4</div>
+					</div>
+					<div class="gen_block">
+						<div class="block2">5</div>
+						<div class="block2">6</div>
+						<div class="block2">7</div>
+						<div class="block2">8</div>
+						<div class="block2"></div>
+						<div class="block2"></div>
+						<div class="block2"></div>
+						<div class="block2"></div>
+						<div class="block2"></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class='vis'>
+				<H1>Flex-Box верстка</H1>
+				<div class="head_block_f">
+					<div class="gen_block_f">
+						<div class="block_f">1</div>
+						<div class="block_f">2</div>
+						<div class="block_f">3</div>
+						<div class="block_f">4</div>
+					</div>
+					<div class="gen_block_f">
+						<div class="block2_f">5</div>
+						<div class="block2_f">6</div>
+						<div class="block2_f">7</div>
+						<div class="block2_f">8</div>
+						<div class="block2_f"></div>
+						<div class="block2_f"></div>
+						<div class="block2_f"></div>
+						<div class="block2_f"></div>
+						<div class="block2_f"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class='vis'>
+				<H1>Блочна верстка (float: left) за допомогою JS цикла FOR</H1>
+				<div class="head_block">
+					<div class="gen_block" id="gen_block1"></div>
+					<div class="gen_block" id="gen_block2"></div>
+				</div>
+			</div>
+			
+			<div class='vis'>
+				<H1>Блочна верстка (float: left) за допомогою JS цикла FOR (з картинками)</H1>
+				<div class="head_block">
+					<div class="gen_block" id="gen_block3"></div>
+					<div class="gen_block" id="gen_block4"></div>
+				</div>
+
+			</div>
+			
+      <div class='vis'>
+			<H1>Bootstrap верстка</H1>
+			<div class="container-fluid center">
+				<div class="row">
+					<div class="col-6 col-md-6 gen_block_b">
+						<div class="row r100">
+							<div class="col-md-6 block_b">1</div>
+							<div class="col-md-6 block_b">2</div>
+							<div class="col-md-6 block_b">3</div>
+							<div class="col-md-6 block_b">4</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-6 gen_block_b">
+						<div class="row r100">
+							<div class="col-md-4 block2_b">5</div>
+							<div class="col-md-4 block2_b">6</div>
+							<div class="col-md-4 block2_b">7</div>
+							<div class="col-md-4 block2_b">8</div>
+							<div class="col-md-4 block2_b"></div>
+							<div class="col-md-4 block2_b"></div>
+							<div class="col-md-4 block2_b"></div>
+							<div class="col-md-4 block2_b"></div>
+							<div class="col-md-4 block2_b"></div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		      <script src="js/models.js"></script>
+					<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    			<script src="js/popper.mim.js"></script>
+    			<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

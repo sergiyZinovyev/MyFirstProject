@@ -1,0 +1,207 @@
+body, div{
+	font: 28px Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+h1{
+	font-size: 28px;
+	text-align: center;
+}
+.layout{
+	margin-top: 20px;
+}
+
+/*таблична верстка*/
+table{
+  	margin: auto;
+   	border-spacing: 0px;
+  	border-collapse: collapse;
+}
+td{
+  	background: #2b3e50;
+  	color: #ffffff;
+  	border-right: 7px solid;
+ 	border-bottom: 3px solid;
+	text-align: right;
+	vertical-align: bottom;
+	width: 100px;
+	height: 93px;
+	padding: 7px;
+  	box-sizing: border-box;
+}
+.big_cell{
+	width: 149px;
+	border-width: 7px;
+}
+
+/*блочна верстка*/
+.head_block{
+	margin: auto;
+	height: 284px;
+	width: 600px;
+}
+.gen_block{
+	height: 284px;
+	width: 300px;
+	float: left;
+}
+.block{
+	background: #2b3e50;
+	padding: 95px 7px 7px;
+	height: 135px;
+	width: 143px;
+	margin-right: 7px;
+	margin-bottom: 7px;
+	float: left;
+	text-align: right;
+	color: #ffffff;
+	box-sizing: border-box;
+}
+.block2{
+	background: #2b3e50;
+	padding: 52px 7px 7px;
+	height: 90px;
+	width: 93px;
+	margin-right: 7px;
+	margin-bottom: 3px;
+	float: left;
+	text-align: right;
+	color: #ffffff;
+	box-sizing: border-box;
+}
+
+/*Flex-Box верстка*/
+.head_block_f{
+	display: flex;
+	margin: auto;
+	height: 277px;
+	width: 600px;
+}
+.gen_block_f{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
+	justify-content: space-around;
+	height: 277px;
+	width: 300px;
+}
+.block_f{
+	display: flex;
+	background: #2b3e50;
+	padding: 7px;
+	height: 135px;
+	width: 143px;
+	align-items: flex-end;
+	justify-content: flex-end;
+	color: #ffffff;
+	box-sizing: border-box;
+}
+.block2_f{
+	display: flex;
+	background: #2b3e50;
+	padding: 7px;
+	height: 90px;
+	width: 93px;
+	align-items: flex-end;
+	justify-content: flex-end;
+	color: #ffffff;
+	box-sizing: border-box;
+}
+
+/*додатковий стиль для блоків та картинок*/
+.picture{
+	background: none;
+	padding: 0;
+	border-radius: 15px;
+}
+
+/*bootstrap*/
+.center {
+	display: flex;
+	justify-content: center;
+}
+.r100{
+	height: 100%;
+}
+.gen_block_b{
+	height: 277px;
+	width: 300px;
+}
+.block_b{
+	display: flex;
+	background: #2b3e50;
+	align-items: flex-end;
+	justify-content: flex-end;
+	color: #ffffff;
+	box-sizing: border-box;
+	border-right: 7px solid #ffffff;
+	border-bottom: 7px solid #ffffff;
+	height: 50%;
+}
+.block2_b{
+	display: flex;
+	background: #2b3e50;
+	align-items: flex-end;
+	justify-content: flex-end;
+	color: #ffffff;
+	box-sizing: border-box;
+	border-right: 7px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
+	height: 33.333333%;
+}
+
+
+
+
+
+
+/*бокове меню та візуалізація елементів*/
+.vis{
+	margin-top: 10px;
+	display: none;
+}
+.nav{
+	display: flex;
+	position: fixed;
+	top: -360px;
+	left: 10px;
+	flex-direction: column;
+	transition: .5s;
+}
+.nav:hover {
+	top: 10px;
+	transition: .5s;
+}
+.check {
+	margin: 5px;
+	width: 250px;
+	height: 50px;
+	border-radius: 10px;
+	color: #ffffff;
+	font-size: 16px;
+	background: linear-gradient(-45deg, #507495, #2b3e50);
+	cursor: pointer;
+}
+.check:hover {
+	background: linear-gradient(45deg, #507495, #2b3e50);
+}
+.check2 {
+	margin: 5px;
+	width: 250px;
+	height: 50px;
+	border-radius: 10px;
+	color: #ffffff;
+	background: linear-gradient(-45deg, #1b2732, #2b3e50);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+

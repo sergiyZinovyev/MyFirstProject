@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+	</head>
+	<body>
+	  <header>
+	    <h1>The World of Fruit</h1>
+	  </header>
+	  <section>
+	      <h1>Fruit Survey</h1>
+		    <form name="MyForm" method="GET" action="http:/myserver.com/myapp">
+	        <table>
+	          <tr>
+	            <td class="lbl">
+	              <label for="name">Name</label>
+	            </td>
+	            <td class="inp">
+	              <input type="text" name="name" id="name" value="" required autofocus="autofocus">
+	            </td>
+	          </td>
+	          <tr>
+	            <td class="lbl">
+	              <label for="address">Address</label>
+	            </td>
+	            <td class="inp">
+	              <input type="text" name="address" id="address" value="" required>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td class="lbl">
+	              <label for="email">Email</label>
+	            </td>
+	            <td class="inp">
+	              <input type="text" name="email" id="email" value="" required>
+	            </td>
+	          </tr>
+			       <tr>
+	            <td class="lbl">
+	              <label for="radio">How many piaces of fruit do you eat per day</label></label>
+	            </td>
+	            <td class="inp">
+	              <input type="radio" name="radio" id="radio" value="0" required>  0<br>
+	              <input type="radio" name="radio" id="radio" value="1" required>  1<br>
+	              <input type="radio" name="radio" id="radio" value="2" required>  2<br>
+	              <input type="radio" name="radio" id="radio" value="More than 2" required>  More than 2<br>
+	            </td>
+	          </tr>
+	            <tr>
+	            <td class="lbl">
+	              <label for="select">My favourite fruit</label>
+	            </td>
+	            <td class="inp">
+	              <select name="select" id="select"required>
+	                 <option value="apple">Apple</option>
+	<option value="banana">Banana</option>
+	<option value="plum">Plum</option>
+	<option value="pomegrante">Pomegrante</option>
+	<option value="apple">Apple</option>
+	            </td>
+	          </tr>
+			  
+			    </table>
+
+			<br>
+			<input type="button" name="btn1" value="3" onclick="alert('Hello')" ondblclick="alert('Dbl Hello')">
+			<br>
+			<input type="submit" value="Click Me!">
+		  </form>
+    </section>
+	</body>
+</html>
