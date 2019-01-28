@@ -61,7 +61,8 @@ function getOff() {
 	//var sizeF = getComputedStyle(elementDisplay).fontSize;
 	//alert (parseInt(sizeF)); /*отримати лише цифри*/
 	//alert (String(exp)[String(exp).length - 1]); /*отримати останній символ строки*/
-
+	//test
+	
 	
 			
 		
