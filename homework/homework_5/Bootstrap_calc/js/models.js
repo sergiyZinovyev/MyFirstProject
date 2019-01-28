@@ -46,6 +46,17 @@ function getCalc () {
 	document.getElementById('display1').value = res;
 	document.getElementById('display2').value = exp + "=";
 }
+function addMinus (){
+	var res = document.getElementById('display1').value;
+	var first = String(res)[0];
+	if (first == undefined) {return;}
+	if (first != '-') {
+	document.getElementById('display1').value = "-" + res;
+	return;
+	}
+		res = res.substring(1);
+		document.getElementById('display1').value = res;
+}
 function insertExp() {
 	var exp = document.getElementById('display1').value;
 	exp = exp.substring(0, exp.length - 1);
