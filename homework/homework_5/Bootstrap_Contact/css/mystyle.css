@@ -8,12 +8,18 @@ a:hover {
 	text-decoration: none;
 	color: #10c9c3;
 }
+h1 {
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+h2 {
+	margin-bottom: 30px;
+}
 
 
 
 header{
 	background: #ffffff;
-	/*height: 100px;*/
 	color: #191919;
 	padding-top: 40px;
 	padding-bottom: 40px;
@@ -60,23 +66,24 @@ input, textarea {
 	display: block;
 	float: left;
 	border: none;
-	margin-left: 5%;
 	margin-bottom: 25px;
 	padding: 10px;
 	color: #191919;
 }
 .input_1_2 {
-	width: 45%;
+	width: 47.5%;	
+}
+.input_2{
+	margin-left: 5%;
 }
 .input_3, textarea{
-	width: 95%;
+	width: 100%;
 }
 textarea{
 	height: 150px;
 }
 button {
 	border: none;
-	margin-left: 5%;
 	background: #10c9c3;
 	color: #ffffff;
 	padding: 10px 20px;
@@ -100,11 +107,11 @@ button {
 
 footer{
 	background: #141414;
-	/*height: 285px;*/
 	padding-top: 100px;
 	padding-bottom: 100px;
 }
 .add-color2 {
+	display: block;
 	color: #bcbcbc;
 }
 
