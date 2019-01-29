@@ -1,11 +1,14 @@
 
 .calc {
+	/*display: none;*/
+	position: absolute;
 	margin: 20px;
 	width: 320px;
 	height: 499px;
 	background-color: #ececec;
 	border: 1px #888888 solid;
 	font-family: sans-serif;
+	z-index: 10;
 }
 /*---------------------------------------------*/
 .head_c{
@@ -202,3 +205,22 @@
 	background: #0066ff;
 	color: #ffffff;
 }
+
+.ico {
+	/*display: none;*/
+	position: absolute;
+	top: 0px;
+	width: 50px;
+	margin: 20px;
+	cursor: pointer;
+	z-index: 1;
+}
+
+
+
+
+
+
+
+
+
