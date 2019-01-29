@@ -36,24 +36,31 @@
 	border: 1px solid #000000;
 }
 .X1{
-	font-size: 24px;
+	width: 16px;
+	height: 1px;
+	background: #000000;
 	position: relative;
 	transform: rotate(45deg);
-	left: 9px;
+	left: 8px;
 }
 .X2{
-	font-size: 24px;
+	width: 16px;
+	height: 1px;
+	background: #000000;
 	position: relative;
 	transform: rotate(-45deg);
-	right: 9px;
+	right: 8px;
 }
 .butt_h_m:hover{
 	background: #d9d9d9;
 }
 .butt_h_m_X:hover{
 	background: #e63900;
-	color: #ffffff;
 }
+.butt_h_m_X:hover .X1, .butt_h_m_X:hover .X2{
+	background: #ffffff;
+}
+
 /*---------------------------------------------*/
 .nav_c{
 	display: flex;
