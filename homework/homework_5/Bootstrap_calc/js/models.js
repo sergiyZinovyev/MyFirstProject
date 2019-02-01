@@ -39,6 +39,14 @@ function getDivByX() {
 	document.getElementById('display1').value = dbx;
 	document.getElementById('display2').value = "1/(" + exp + ")";
 }
+function getPercent() {
+	var exp = document.getElementById('display1').value;
+	var perc = 'Я ще не знаю як це рахувати :)';
+	setSizeId('display1', perc);
+	document.getElementById('display1').value = '0%';
+	document.getElementById('display2').value = perc;
+}
+
 function getCalc () {
 	var exp = document.getElementById('display1').value;
 	var res = eval(exp);
