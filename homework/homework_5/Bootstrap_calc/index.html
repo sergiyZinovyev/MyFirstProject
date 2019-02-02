@@ -17,7 +17,7 @@
 			    <div class="head_menu">
 			    	<div class="butt_h_m">&#8722</div>
 			    	<div class="butt_h_m"><div class="sq"></div></div>
-			    	<div class="butt_h_m butt_h_m_X">
+			    	<div class="butt_h_m butt_h_m_X" onClick="offCalc()">
 						<div class="X1"></div>
 						<div class="X2"></div>
 			    	</div>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="row buttons_c">
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b'>%</button>
+			    	<button class='butt_b' onClick='getPercent()'>%</button>
 			    </div>
 				<div class="col-3 size_butt_b">
 			    	<button class='butt_b' onClick='getSquareRoot()'>&#8730</button>
@@ -132,6 +132,9 @@
 				</div>
 			</div>
 		</div>
+		
+		<img class='ico' src='img/ico-calc.png' onClick="onCalc()"></img>
+		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     	<script src="js/popper.mim.js"></script>
     	<script src="js/bootstrap.min.js"></script>
