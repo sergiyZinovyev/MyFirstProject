@@ -1,0 +1,37 @@
+.block_f, .block2_f {
+  display: flex;
+  background: #2b3e50;
+  padding: 7px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  color: #ffffff;
+  box-sizing: border-box; }
+
+body {
+  font: 28px Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+
+.head_block_f {
+  display: flex;
+  margin: auto;
+  height: 277px;
+  width: 600px; }
+
+.gen_block_f {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-around;
+  width: 300px; }
+
+.block_f {
+  height: 135px;
+  width: 143px; }
+
+.block2_f {
+  height: 90px;
+  width: 93px; }
+
+/*# sourceMappingURL=scss_style.css.map */
