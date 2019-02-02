@@ -1,0 +1,41 @@
+$myBorder: 1px solid black;
+@mixin background-color($r){
+	background-color: $r;
+}
+@mixin myMedia($scrWidth, $bdColor){
+	@media (min-width: $scrWidth) {
+	.block {
+		@include background-color($bdColor);
+	}
+}	
+}
+@mixin myMedia2($scrWidth, $bdColor){
+	@media (max-width: $scrWidth) {
+	.block {
+		@include background-color($bdColor);
+	}
+}	
+}
+
+.gen_block{
+	border: $myBorder;
+	width: 530px;
+	height: 278px;
+	margin-top: 20px;
+}
+.row_gen_block{
+	height: 40%;
+}
+.row_gen_block3{
+	height: 20%;
+}
+.block {
+	border: $myBorder;
+}
+@include myMedia2(576px, #ff0000);
+@include myMedia(576px, #bf00ff);
+@include myMedia(768px, #0066ff);
+@include myMedia(992px, #00ff00);
+@include myMedia(1200px, #ffff00);
+
+

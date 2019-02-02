@@ -1,0 +1,41 @@
+
+.gen_block{
+	border: 1px solid black;
+	width: 530px;
+	height: 278px;
+	margin-top: 20px;
+}
+.row_gen_block{
+	height: 40%;
+}
+.row_gen_block3{
+	height: 20%;
+}
+.block {
+	border: 1px solid black;
+}
+@media (max-width: 576px) {
+	.block {
+		background-color: #ff0000;
+	}
+}
+@media (min-width: 576px) {
+	.block {
+		background-color: #bf00ff;
+	}
+}
+@media (min-width: 768px) {
+	.block {
+		background-color: #0066ff;
+	}
+}
+@media (min-width: 992px) {
+	.block {
+		background-color: #00ff00;
+	}
+}
+@media (min-width: 1200px) {
+	.block {
+		background-color: #ffff00;
+	}
+}
