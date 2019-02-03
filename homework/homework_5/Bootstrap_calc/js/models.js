@@ -1,3 +1,63 @@
+function getParsing(sent) {
+	//var sent = document.getElementById('display1').value;
+	var db = new Array();
+	var n = 0;
+	for (var i = 0; i<String(sent).length; i++){
+		var current = String(sent)[i];
+		var next = String(sent)[i+1];
+		if (current == '+' || current == '-' || current == '*' || current == '/') {
+		  db[n] = String(sent)[i];
+		  n = n + 1;
+		  continue;
+		}
+		  if (db[n] == undefined){
+		    db[n] = String(sent)[i];
+		  }
+		 else {db[n] += String(sent)[i];}
+		  if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
+	    n = n + 1;
+	    }
+	}
+	alert (db);
+	return db;
+}
+function getProd (sentarr){
+  //var gg = document.getElementById('display1').value;
+	var db2 = getParsing(sentarr);
+	var prod = new Array();
+	var n = 0; 
+	for (var i = 0; i<db2.length; i++){
+		var current2 = db2[i];
+		var next2 = db2[i+1];
+		var afternext2 = db2[i+2];
+		var before2 = db2[i-1];
+		if (next2 == '*' || next2 == '/'){
+	  	if (next2 == '*' ){
+	  		prod[n] = current2*afternext2;
+	  		n = n + 1;
+  			i = i + 2;
+	  		}
+	  	if (next2 == '/' ){
+	  		prod[n] = current2/afternext2;
+	  		n = n + 1;
+	  		i = i + 2;
+	  		}
+			}
+			else {
+			  prod[n] = current2;
+				n = n + 1;
+			}
+	}
+	
+	
+	
+	alert (prod);
+	
+}
+function getResalt (dd){
+	var dd = document.getElementById('display1').value;
+	getProd(dd);
+}
 function setSizeId(id, val){
 	// id елемента
 	// val - значення яке потрібно вивести на екран
