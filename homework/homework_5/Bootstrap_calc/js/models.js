@@ -1,5 +1,4 @@
 function getParsing(sent) {
-	//var sent = document.getElementById('display1').value;
 	var db = new Array();
 	var n = 0;
 	for (var i = 0; i<String(sent).length; i++){
@@ -18,13 +17,11 @@ function getParsing(sent) {
 	    n = n + 1;
 	    }
 	}
-	alert (db);
 	return db;
 }
 function getProd (sentarr){
-  //var gg = document.getElementById('display1').value;
 	var db2 = getParsing(sentarr);
-	var prod = new Array();
+	prod = new Array();
 	var n = 0; 
 	for (var i = 0; i<db2.length; i++){
 		var current2 = db2[i];
@@ -36,23 +33,27 @@ function getProd (sentarr){
 	  		prod[n] = current2*afternext2;
 	  		n = n + 1;
   			i = i + 2;
-	  		}
+	  	}
 	  	if (next2 == '/' ){
 	  		prod[n] = current2/afternext2;
 	  		n = n + 1;
 	  		i = i + 2;
-	  		}
-			}
-			else {
-			  prod[n] = current2;
-				n = n + 1;
-			}
+	  	}
+		}
+		else {
+			prod[n] = current2;
+			n = n + 1;
+		}
 	}
-	
-	
-	
-	alert (prod);
-	
+	for (var a=0; a<prod.length; a++){	
+	  if(prod[a] == '*' || prod[a] == '/'){
+		  prod = prod.join('');
+		  getProd (prod);
+		  break;
+		}
+	}
+	if (Array.isArray(prod)){prod = prod.join('');}
+	alert ('res3: '+prod);
 }
 function getResalt (dd){
 	var dd = document.getElementById('display1').value;
