@@ -17,33 +17,36 @@ function getParsing(sent) {
 	    n = n + 1;
 	    }
 	}
+	alert (db);
 	return db;
 }
 function getProd (sentarr){
 	var db2 = getParsing(sentarr);
 	prod = new Array();
-	var n = 0; 
+	var n = 0;
+	var x = 0; 
 	for (var i = 0; i<db2.length; i++){
 		var current2 = db2[i];
 		var next2 = db2[i+1];
 		var afternext2 = db2[i+2];
-		var before2 = db2[i-1];
-		if (next2 == '*' || next2 == '/'){
-	  	if (next2 == '*' ){
-	  		prod[n] = current2*afternext2;
-	  		n = n + 1;
-  			i = i + 2;
-	  	}
-	  	if (next2 == '/' ){
-	  		prod[n] = current2/afternext2;
-	  		n = n + 1;
-	  		i = i + 2;
-	  	}
+		if (x == 0 && (next2 == '*' || next2 == '/')){
+		  	if (next2 == '*' ){
+		  		prod[n] = current2*afternext2;
+		  		n = n + 1;
+	  			i = i + 2;
+	  			x = 1;
+		  		continue;
+		  	}
+		  	if (next2 == '/' ){
+		  		prod[n] = current2/afternext2;
+		  		n = n + 1;
+		  		i = i + 2;
+		  		x = 1;
+		  		continue;
+		  	}
 		}
-		else {
-			prod[n] = current2;
-			n = n + 1;
-		}
+		prod[n] = current2;
+		n = n + 1;
 	}
 	for (var a=0; a<prod.length; a++){	
 	  if(prod[a] == '*' || prod[a] == '/'){
@@ -53,19 +56,63 @@ function getProd (sentarr){
 		}
 	}
 	if (Array.isArray(prod)){prod = prod.join('');}
-	alert ('res3: '+prod);
+	//alert ('res3: '+prod);
+	return prod;
+}
+function getSumm (totalprod) {
+	var db2 = getParsing(totalprod);
+	totalcalc = new Array();
+	var n = 0;
+	var x = 0; 
+	for (var i = 0; i<db2.length; i++){
+		var current2 = db2[i];
+		var next2 = db2[i+1];
+		var afternext2 = db2[i+2];
+		if (x == 0 && (next2 == '+' || next2 == '-')){
+		  	if (next2 == '+' ){
+		  		totalcalc[n] = Number(current2)+Number(afternext2);
+		  		n = n + 1;
+	  			i = i + 2;
+	  			x = 1;
+		  		continue;
+		  	}
+		  	if (next2 == '-' ){
+		  		totalcalc[n] = Number(current2)-Number(afternext2);
+		  		n = n + 1;
+		  		i = i + 2;
+		  		x = 1;
+		  		continue;
+		  	}
+		}
+		totalcalc[n] = current2;
+		n = n + 1;
+	}
+	for (var a=0; a<totalcalc.length; a++){	
+	  if(totalcalc[a] == '+' || totalcalc[a] == '-'){
+		  totalcalc = totalcalc.join('');
+		  getSumm (totalcalc);
+		  break;
+		}
+	}
+	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
+	//alert ('res3: '+totalcalc);
+	return totalcalc;
 }
 function getResalt (dd){
 	var dd = document.getElementById('display1').value;
-	getProd(dd);
+	//getSumm(dd);
+	totalcalc = getSumm(getProd(dd));
+	//totalcalc = getSumm.getProd(dd);
+
+	alert ('res3: '+totalcalc);
 }
 function setSizeId(id, val){
 	// id елемента
 	// val - значення яке потрібно вивести на екран
 	document.getElementById(id).style.fontSize = '50px';
-	  if (String(val).length > 9){
-	    document.getElementById(id).style.fontSize = '24px';
-     }
+	if (String(val).length > 9){
+		document.getElementById(id).style.fontSize = '24px';
+    }
 }
 function getNum (num){
 	var res = document.getElementById('display1').value;
@@ -75,7 +122,7 @@ function getNum (num){
 	var none = undefined;
 	if (last == '0' && (before == none || before == '+' || before == '-' || before == '*' || before == '/') && num != '.') {
 		return;
-		}	
+	}	
 	setSizeId('display1', res);
 	document.getElementById('display1').value += num;
 }	
@@ -123,8 +170,8 @@ function addMinus (){
 	document.getElementById('display1').value = "-" + res;
 	return;
 	}
-		res = res.substring(1);
-		document.getElementById('display1').value = res;
+	res = res.substring(1);
+	document.getElementById('display1').value = res;
 }
 function insertExp() {
 	var exp = document.getElementById('display1').value;
@@ -137,27 +184,29 @@ function getOff() {
 }	
 
 
-			function visibleElementByClass(name, item){
-				//відображує або приховує вказаний елемент заданого класу
-				//name - назва класу контейнера
-				//item - порядковий номер контейнера (рахується від 0)
-				//по замовчуванню item=0 (перший елемент)
-				if (item == undefined) {item = 0;}
-				element = document.getElementsByClassName(name)[item]; 
-				var prop = window.getComputedStyle(element).display;
-				if (prop == 'none') {
-					 element.style.display = 'block';
-					setTimeout ( function( ) {
-						element.style.transition = '0.5s';
-						element.style.opacity = '1';
-						}, 100);
-				}
-				else {
-					element.style.transition = '0.5s';
-					element.style.opacity = '0';
-					setTimeout ("element.style.display = 'none'", 500);
-				}
-			}
+function visibleElementByClass(name, item){
+	//відображує або приховує вказаний елемент заданого класу
+	//name - назва класу контейнера
+	//item - порядковий номер контейнера (рахується від 0)
+	//по замовчуванню item=0 (перший елемент)
+	if (item == undefined) {item = 0;}
+	element = document.getElementsByClassName(name)[item]; 
+	var prop = window.getComputedStyle(element).display;
+	if (prop == 'none') {
+		 element.style.display = 'block';
+		setTimeout ( function( ) {
+			element.style.transition = '0.5s';
+			element.style.opacity = '1';
+			}, 100);
+	}
+	else {
+		element.style.transition = '0.5s';
+		element.style.opacity = '0';
+		setTimeout ("element.style.display = 'none'", 500);
+	}
+}
+
+
 function onCalc(){
 			//visibleElementByClass('ico');
 			visibleElementByClass('calc');
@@ -166,13 +215,15 @@ function offCalc(){
 			visibleElementByClass('calc');
 			//visibleElementByClass('ico');
 }
-  // отримання поточного розміру шрифта
-	//var elementDisplay = document.getElementById('display1');
-	//var sizeF = getComputedStyle(elementDisplay).fontSize;
-	//alert (parseInt(sizeF)); /*отримати лише цифри*/
-	//alert (String(exp)[String(exp).length - 1]); /*отримати останній символ строки*/
-	//test
-	
+
+
+// отримання поточного розміру шрифта
+//var elementDisplay = document.getElementById('display1');
+//var sizeF = getComputedStyle(elementDisplay).fontSize;
+//alert (parseInt(sizeF)); /*отримати лише цифри*/
+//alert (String(exp)[String(exp).length - 1]); /*отримати останній символ строки*/
+//test
+
 	
 			
 		
