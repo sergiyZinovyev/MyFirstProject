@@ -1,11 +1,16 @@
 function getParsing(sent) {
 	var db = new Array();
 	var n = 0;
-	for (var i = 0; i<String(sent).length; i++){
+	var item = 0;
+	for (var i = item; i<String(sent).length; i++){
 		var current = String(sent)[i];
 		var next = String(sent)[i+1];
 		if (current == '+' || current == '-' || current == '*' || current == '/') {
-		  db[n] = String(sent)[i];
+		  if (i == 0 && current == '-'){
+			  db[n] = String(sent)[i];
+			  continue;
+			}
+		 db[n] = String(sent)[i];
 		  n = n + 1;
 		  continue;
 		}
@@ -16,8 +21,9 @@ function getParsing(sent) {
 		  if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
 	    n = n + 1;
 	    }
+	
 	}
-	alert (db);
+	//alert ('db='+db);
 	return db;
 }
 function getProd (sentarr){
@@ -61,6 +67,9 @@ function getProd (sentarr){
 }
 function getSumm (totalprod) {
 	var db2 = getParsing(totalprod);
+	/*if (db2[0] == "-") {
+		db2 = db2.unshift(0);
+		}*/
 	totalcalc = new Array();
 	var n = 0;
 	var x = 0; 
@@ -68,6 +77,7 @@ function getSumm (totalprod) {
 		var current2 = db2[i];
 		var next2 = db2[i+1];
 		var afternext2 = db2[i+2];
+		//alert ('next2='+next2+'   db2='+db2);
 		if (x == 0 && (next2 == '+' || next2 == '-')){
 		  	if (next2 == '+' ){
 		  		totalcalc[n] = Number(current2)+Number(afternext2);
@@ -78,7 +88,8 @@ function getSumm (totalprod) {
 		  	}
 		  	if (next2 == '-' ){
 		  		totalcalc[n] = Number(current2)-Number(afternext2);
-		  		n = n + 1;
+		  		//alert('totalcalc[n]='+totalcalc[n]);
+			  	n = n + 1;
 		  		i = i + 2;
 		  		x = 1;
 		  		continue;
