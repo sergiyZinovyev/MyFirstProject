@@ -12,6 +12,7 @@
 	</head>
 	<body>
 		<div class="calc">
+
 			<div class="head_c">
 			    <div class="name">Calculator</div>
 			    <div class="head_menu">
@@ -23,20 +24,23 @@
 			    	</div>
 				</div>
 			</div>
+
 			<div class="nav_c">
 				<div class="menu">
 					<div class="butt_menu">&#8801</div>
 					<div class="text_menu">Standard</div>
 				</div>
 				<div class="butt_history">&#8634</div>
-			 
 			</div>
+
 			<div class="input2_c">
-			   <input type="text" name="name" id="display2" value=""></input>
+			   <input type="text" name="name" id="display2" readonly="readonly" value=""></input>
 			</div>
+
 			<div class="input1_c">
-			   <input type="text" name="name" id="display1" value=""></input>
+			   <input type="text" name="name" id="display1" readonly="readonly" value=""></input>
 			</div>
+
 			<div class="row memory_c">
 				<div class="col-2 size_butt_m">
 			    	<button class='butt_m' onClick='getParsing()'>MC</button>
@@ -57,6 +61,7 @@
 			    	<button class='butt_m'>M<sup>&#9660</sup></button>
 			    </div>
 			</div>
+			
 			<div class="row buttons_c">
 				<div class="col-3 size_butt_b">
 			    	<button class='butt_b' onClick='getPercent()'>%</button>

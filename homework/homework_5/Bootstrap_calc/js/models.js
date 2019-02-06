@@ -1,4 +1,6 @@
 function getParsing(sent) {
+	// розбирає вираз поелементно та повертає масив елементів
+	// sent - математичний вираз в строковому вигляді
 	var db = new Array();
 	var n = 0;
 	var item = 0;
@@ -6,27 +8,28 @@ function getParsing(sent) {
 		var current = String(sent)[i];
 		var next = String(sent)[i+1];
 		if (current == '+' || current == '-' || current == '*' || current == '/') {
-		  if (i == 0 && current == '-'){
-			  db[n] = String(sent)[i];
-			  continue;
+		  	if (i == 0 && current == '-'){
+				db[n] = String(sent)[i];
+				continue;
 			}
-		 db[n] = String(sent)[i];
-		  n = n + 1;
-		  continue;
+			db[n] = String(sent)[i];
+			n = n + 1;
+			continue;
 		}
-		  if (db[n] == undefined){
-		    db[n] = String(sent)[i];
-		  }
-		 else {db[n] += String(sent)[i];}
-		  if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
+		if (db[n] == undefined){
+			db[n] = String(sent)[i];
+			}
+		else {db[n] += String(sent)[i];}
+		if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
 	    n = n + 1;
 	    }
-	
 	}
 	//alert ('db='+db);
 	return db;
 }
 function getProd (sentarr){
+	// виконує тільки операції множення/ділення та повертає вираз в строковому вигляді
+	// sentarr - математичний вираз в строковому вигляді
 	var db2 = getParsing(sentarr);
 	prod = new Array();
 	var n = 0;
@@ -55,21 +58,19 @@ function getProd (sentarr){
 		n = n + 1;
 	}
 	for (var a=0; a<prod.length; a++){	
-	  if(prod[a] == '*' || prod[a] == '/'){
-		  prod = prod.join('');
-		  getProd (prod);
-		  break;
+	    if(prod[a] == '*' || prod[a] == '/'){
+			prod = prod.join('');
+			getProd (prod);
+			break;
 		}
 	}
 	if (Array.isArray(prod)){prod = prod.join('');}
-	//alert ('res3: '+prod);
 	return prod;
 }
 function getSumm (totalprod) {
+	// виконує тільки операції додавання/віднімання та повертає вираз в строковому вигляді
+	// математичний вираз в строковому вигляді (має містити тільки операції додавання/віднімання)
 	var db2 = getParsing(totalprod);
-	/*if (db2[0] == "-") {
-		db2 = db2.unshift(0);
-		}*/
 	totalcalc = new Array();
 	var n = 0;
 	var x = 0; 
@@ -77,7 +78,6 @@ function getSumm (totalprod) {
 		var current2 = db2[i];
 		var next2 = db2[i+1];
 		var afternext2 = db2[i+2];
-		//alert ('next2='+next2+'   db2='+db2);
 		if (x == 0 && (next2 == '+' || next2 == '-')){
 		  	if (next2 == '+' ){
 		  		totalcalc[n] = Number(current2)+Number(afternext2);
@@ -88,7 +88,6 @@ function getSumm (totalprod) {
 		  	}
 		  	if (next2 == '-' ){
 		  		totalcalc[n] = Number(current2)-Number(afternext2);
-		  		//alert('totalcalc[n]='+totalcalc[n]);
 			  	n = n + 1;
 		  		i = i + 2;
 		  		x = 1;
@@ -106,18 +105,16 @@ function getSumm (totalprod) {
 		}
 	}
 	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
-	//alert ('res3: '+totalcalc);
 	return totalcalc;
 }
 function getResalt (dd){
+	// обраховує математичний вираз записаний в строковому форматі
 	var dd = document.getElementById('display1').value;
-	//getSumm(dd);
 	totalcalc = getSumm(getProd(dd));
-	//totalcalc = getSumm.getProd(dd);
-
 	alert ('res3: '+totalcalc);
 }
 function setSizeId(id, val){
+	// зменшує розмір шрифта, якщо кількість символів більша 11
 	// id елемента
 	// val - значення яке потрібно вивести на екран
 	document.getElementById(id).style.fontSize = '50px';
@@ -126,12 +123,14 @@ function setSizeId(id, val){
     }
 }
 function getNum (num){
+	//додає ще один символ на екран, якщо він відповідає вимогам
+	//num - символ який потрібно додати
 	var res = document.getElementById('display1').value;
 	var last = String(res)[String(res).length - 1];
 	var before = String(res)[String(res).length - 2];
-	//alert (before);
 	var none = undefined;
-	if (last == '0' && (before == none || before == '+' || before == '-' || before == '*' || before == '/') && num != '.') {
+	//var vol = /[0-9]/;
+	if (last == '0' && (before == none || before == '+' || before == '-' || before == '*' || before == '/') && /[0-9]/.test(num)){
 		return;
 	}	
 	setSizeId('display1', res);
@@ -204,7 +203,7 @@ function visibleElementByClass(name, item){
 	element = document.getElementsByClassName(name)[item]; 
 	var prop = window.getComputedStyle(element).display;
 	if (prop == 'none') {
-		 element.style.display = 'block';
+		element.style.display = 'block';
 		setTimeout ( function( ) {
 			element.style.transition = '0.5s';
 			element.style.opacity = '1';
@@ -219,12 +218,12 @@ function visibleElementByClass(name, item){
 
 
 function onCalc(){
-			//visibleElementByClass('ico');
-			visibleElementByClass('calc');
+	//visibleElementByClass('ico');
+	visibleElementByClass('calc');
 }
 function offCalc(){
-			visibleElementByClass('calc');
-			//visibleElementByClass('ico');
+	visibleElementByClass('calc');
+	//visibleElementByClass('ico');
 }
 
 

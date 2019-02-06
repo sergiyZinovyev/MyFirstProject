@@ -192,6 +192,7 @@
 	height: 100%;
 	font-size: 18px;
 	font-family: sans-serif;
+	/*cursor: pointer;*/
 }
 .b2{ /*додатковий стиль для кнопок з цифрами*/
 	background: #fbfbfb;
