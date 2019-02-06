@@ -129,10 +129,22 @@ function getNum (num){
 	var last = String(res)[String(res).length - 1];
 	var before = String(res)[String(res).length - 2];
 	var none = undefined;
-	//var vol = /[0-9]/;
-	if (last == '0' && (before == none || before == '+' || before == '-' || before == '*' || before == '/') && /[0-9]/.test(num)){
+	var reg_num = /[0-9]/;
+	var reg_simb = /[\+\-\*\/]/;
+	var reg_simb2 = /[\+\-\*\/\.]/;
+  if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
 		return;
-	}	
+  }	
+  if ((last == none || reg_simb2.test(last)) && reg_simb2.test(num)){
+	return;
+  }
+  if (num == '.'){
+    var current_db = getParsing(res);
+    var last_item = current_db[current_db.length - 1];
+    if (/\./.test(last_item)/* && /\./.test(num)*/){
+	  return;
+  	}
+	}
 	setSizeId('display1', res);
 	document.getElementById('display1').value += num;
 }	
