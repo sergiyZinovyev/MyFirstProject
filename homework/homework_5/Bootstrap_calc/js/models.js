@@ -109,9 +109,10 @@ function getSumm (totalprod) {
 }
 function getResalt (dd){
 	// обраховує математичний вираз записаний в строковому форматі
-	var dd = document.getElementById('display1').value;
+	//var dd = document.getElementById('display1').value;
 	totalcalc = getSumm(getProd(dd));
-	alert ('res3: '+totalcalc);
+	//alert ('res3: '+totalcalc);
+	return totalcalc;
 }
 function setSizeId(id, val){
 	// зменшує розмір шрифта, якщо кількість символів більша 11
@@ -121,11 +122,17 @@ function setSizeId(id, val){
 	if (String(val).length > 9){
 		document.getElementById(id).style.fontSize = '24px';
     }
+  if (String(val).length > 20){
+		document.getElementById(id).style.fontSize = '12px';
+    }
 }
 function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
 	var res = document.getElementById('display1').value;
+	if (String(res).length > 43) {
+	  ifError();
+		return;}
 	var last = String(res)[String(res).length - 1];
 	var before = String(res)[String(res).length - 2];
 	var none = undefined;
@@ -133,15 +140,18 @@ function getNum (num){
 	var reg_simb = /[\+\-\*\/]/;
 	var reg_simb2 = /[\+\-\*\/\.]/;
   if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
+		ifError();
 		return;
   }	
   if ((last == none || reg_simb2.test(last)) && reg_simb2.test(num)){
+	ifError();
 	return;
   }
   if (num == '.'){
     var current_db = getParsing(res);
     var last_item = current_db[current_db.length - 1];
     if (/\./.test(last_item)/* && /\./.test(num)*/){
+	  ifError();
 	  return;
   	}
 	}
@@ -150,21 +160,21 @@ function getNum (num){
 }	
 function getSquareRoot () {
 	var exp = document.getElementById('display1').value;
-	var sqrr = Math.sqrt(eval(exp));
+	var sqrr = Math.sqrt(getResalt(exp));
 	setSizeId('display1', sqrr);
 	document.getElementById('display1').value = sqrr;
 	document.getElementById('display2').value = "√(" + exp + ")";
 }
 function getSquare () {
 	var exp = document.getElementById('display1').value;
-	var sqr = eval(exp)*eval(exp);
+	var sqr = getResalt(exp)*getResalt(exp);
 	setSizeId('display1', sqr);
 	document.getElementById('display1').value = sqr;
 	document.getElementById('display2').value = "(" + exp + ")^2";
 }
 function getDivByX() {
 	var exp = document.getElementById('display1').value;
-	var dbx = 1/eval(exp);
+	var dbx = 1/getResalt(exp);
 	setSizeId('display1', dbx);
 	document.getElementById('display1').value = dbx;
 	document.getElementById('display2').value = "1/(" + exp + ")";
@@ -179,7 +189,13 @@ function getPercent() {
 
 function getCalc () {
 	var exp = document.getElementById('display1').value;
-	var res = eval(exp);
+	var last = String(exp)[String(exp).length - 1];
+	var reg_simb2 = /[\+\-\*\/\.]/;
+	if (reg_simb2.test(last)){
+		ifError();
+		return;
+	}
+	var res = getResalt(exp);
 	setSizeId('display1', res);
 	document.getElementById('display1').value = res;
 	document.getElementById('display2').value = exp + "=";
@@ -237,7 +253,20 @@ function offCalc(){
 	visibleElementByClass('calc');
 	//visibleElementByClass('ico');
 }
-
+function ifError(){
+	//document.getElementById('display1').style.background = 'red';
+	document.getElementById('display1').style.color = 'red';
+  //val_disp = document.getElementById('display1').value;
+	//document.getElementById('display1').value = 'Error !';
+	//document.getElementById('display1').style.textAlign = 'left';
+	setTimeout(function(){
+	  //document.getElementById('display1').style.background = 'none';
+	  document.getElementById('display1').style.color = 'black';
+	  //document.getElementById('display1').style.transition = '0.5s';
+		//document.getElementById('display1').style.opacity = '1';
+		//document.getElementById('display1').style.textAlign = 'right';
+	  /*document.getElementById('display1').value = val_disp;*/},200);
+}
 
 // отримання поточного розміру шрифта
 //var elementDisplay = document.getElementById('display1');
