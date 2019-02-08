@@ -20,6 +20,9 @@ function getParsing(sent) {
 			db[n] = String(sent)[i];
 			}
 		else {db[n] += String(sent)[i];}
+		/*if (next == 'e') {
+			db[n] += String(sent)[i+1]+String(sent)[i+2]
+		}*/
 		if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
 	    n = n + 1;
 	    }
@@ -40,14 +43,16 @@ function getProd (sentarr){
 		var afternext2 = db2[i+2];
 		if (x == 0 && (next2 == '*' || next2 == '/')){
 		  	if (next2 == '*' ){
-		  		prod[n] = current2*afternext2;
+		  		var fix = current2*afternext2;
+		  		prod[n] = +fix.toFixed(16);
 		  		n = n + 1;
 	  			i = i + 2;
 	  			x = 1;
 		  		continue;
 		  	}
 		  	if (next2 == '/' ){
-		  		prod[n] = current2/afternext2;
+		  		var fix = current2/afternext2;
+		  		prod[n] = +fix.toFixed(16);
 		  		n = n + 1;
 		  		i = i + 2;
 		  		x = 1;
@@ -80,14 +85,16 @@ function getSumm (totalprod) {
 		var afternext2 = db2[i+2];
 		if (x == 0 && (next2 == '+' || next2 == '-')){
 		  	if (next2 == '+' ){
-		  		totalcalc[n] = Number(current2)+Number(afternext2);
+		  		var fix = Number(current2)+Number(afternext2);
+		  		totalcalc[n] = +fix.toFixed(16);
 		  		n = n + 1;
 	  			i = i + 2;
 	  			x = 1;
 		  		continue;
 		  	}
 		  	if (next2 == '-' ){
-		  		totalcalc[n] = Number(current2)-Number(afternext2);
+		  		var fix = Number(current2)-Number(afternext2);
+		  		totalcalc[n] = +fix.toFixed(16);
 			  	n = n + 1;
 		  		i = i + 2;
 		  		x = 1;
@@ -114,6 +121,7 @@ function getResalt (dd){
 	//alert ('res3: '+totalcalc);
 	return totalcalc;
 }
+
 function setSizeId(id, val){
 	// зменшує розмір шрифта, якщо кількість символів більша 11
 	// id елемента
@@ -122,63 +130,91 @@ function setSizeId(id, val){
 	if (String(val).length > 9){
 		document.getElementById(id).style.fontSize = '24px';
     }
-  if (String(val).length > 20){
+  	if (String(val).length > 20){
 		document.getElementById(id).style.fontSize = '12px';
     }
 }
+
 function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
 	var res = document.getElementById('display1').value;
 	if (String(res).length > 43) {
-	  ifError();
-		return;}
+	  	ifError();
+		return;
+	}
 	var last = String(res)[String(res).length - 1];
 	var before = String(res)[String(res).length - 2];
 	var none = undefined;
 	var reg_num = /[0-9]/;
 	var reg_simb = /[\+\-\*\/]/;
 	var reg_simb2 = /[\+\-\*\/\.]/;
-  if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
+  	if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
 		ifError();
 		return;
-  }	
-  if ((last == none || reg_simb2.test(last)) && reg_simb2.test(num)){
-	ifError();
-	return;
-  }
-  if (num == '.'){
-    var current_db = getParsing(res);
-    var last_item = current_db[current_db.length - 1];
-    if (/\./.test(last_item)/* && /\./.test(num)*/){
-	  ifError();
-	  return;
-  	}
+  	}	
+  	if ((last == none || reg_simb2.test(last)) && reg_simb2.test(num)){
+		ifError();
+		return;
+	}
+  	if (num == '.'){
+    	var current_db = getParsing(res);
+    	var last_item = current_db[current_db.length - 1];
+    	if (/\./.test(last_item)/* && /\./.test(num)*/){
+	  		ifError();
+	  		return;
+  		}
 	}
 	setSizeId('display1', res);
 	document.getElementById('display1').value += num;
 }	
+
 function getSquareRoot () {
 	var exp = document.getElementById('display1').value;
+	var last = String(exp)[String(exp).length - 1];
+	var reg_simb2 = /[\+\-\*\/\.]/;
+	if (reg_simb2.test(last)){
+		ifError();
+		return;
+	}
+	if (getResalt(exp)<0){
+		ifError();
+		return;
+	}
 	var sqrr = Math.sqrt(getResalt(exp));
 	setSizeId('display1', sqrr);
 	document.getElementById('display1').value = sqrr;
 	document.getElementById('display2').value = "√(" + exp + ")";
 }
+
 function getSquare () {
 	var exp = document.getElementById('display1').value;
+	var last = String(exp)[String(exp).length - 1];
+	var reg_simb2 = /[\+\-\*\/\.]/;
+	if (reg_simb2.test(last)){
+		ifError();
+		return;
+	}
 	var sqr = getResalt(exp)*getResalt(exp);
 	setSizeId('display1', sqr);
 	document.getElementById('display1').value = sqr;
 	document.getElementById('display2').value = "(" + exp + ")^2";
 }
+
 function getDivByX() {
 	var exp = document.getElementById('display1').value;
+	var last = String(exp)[String(exp).length - 1];
+	var reg_simb2 = /[\+\-\*\/\.]/;
+	if (reg_simb2.test(last)){
+		ifError();
+		return;
+	}
 	var dbx = 1/getResalt(exp);
 	setSizeId('display1', dbx);
 	document.getElementById('display1').value = dbx;
 	document.getElementById('display2').value = "1/(" + exp + ")";
 }
+
 function getPercent() {
 	var exp = document.getElementById('display1').value;
 	var perc = 'Я ще не знаю як це рахувати :)';
@@ -200,6 +236,7 @@ function getCalc () {
 	document.getElementById('display1').value = res;
 	document.getElementById('display2').value = exp + "=";
 }
+
 function addMinus (){
 	var res = document.getElementById('display1').value;
 	var first = String(res)[0];
@@ -211,11 +248,13 @@ function addMinus (){
 	res = res.substring(1);
 	document.getElementById('display1').value = res;
 }
+
 function insertExp() {
 	var exp = document.getElementById('display1').value;
 	exp = exp.substring(0, exp.length - 1);
 	document.getElementById('display1').value = exp;
 }
+
 function getOff() {
 	document.getElementById('display1').value = "";
 	document.getElementById('display2').value = "";			
@@ -256,16 +295,16 @@ function offCalc(){
 function ifError(){
 	//document.getElementById('display1').style.background = 'red';
 	document.getElementById('display1').style.color = 'red';
-  //val_disp = document.getElementById('display1').value;
+  	//val_disp = document.getElementById('display1').value;
 	//document.getElementById('display1').value = 'Error !';
 	//document.getElementById('display1').style.textAlign = 'left';
 	setTimeout(function(){
-	  //document.getElementById('display1').style.background = 'none';
-	  document.getElementById('display1').style.color = 'black';
-	  //document.getElementById('display1').style.transition = '0.5s';
+	  	//document.getElementById('display1').style.background = 'none';
+	  	document.getElementById('display1').style.color = 'black';
+	  	//document.getElementById('display1').style.transition = '0.5s';
 		//document.getElementById('display1').style.opacity = '1';
 		//document.getElementById('display1').style.textAlign = 'right';
-	  /*document.getElementById('display1').value = val_disp;*/},200);
+	  	/*document.getElementById('display1').value = val_disp;*/},200);
 }
 
 // отримання поточного розміру шрифта

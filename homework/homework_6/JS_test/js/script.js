@@ -50,4 +50,13 @@ function script(){
 		'(a<b) && (0 == false):\t'+term5+'\n'+
 		'!(2==2) || (true && \'\'):\t'+term2
 	);
+
+
+	var z=1e+21;
+	var v=1e+4;
+	//z = +z.toFixed(16);
+	//v = +v.toFixed(16);
+	zv = z+v;
+	//zv = +zv.toFixed(16);
+	alert ('Чому так?!  '+z+' \+ '+v+' \= '+zv);
 }
