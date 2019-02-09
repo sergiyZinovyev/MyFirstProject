@@ -20,9 +20,11 @@ function getParsing(sent) {
 			db[n] = String(sent)[i];
 			}
 		else {db[n] += String(sent)[i];}
-		/*if (next == 'e') {
-			db[n] += String(sent)[i+1]+String(sent)[i+2]
-		}*/
+		if (next == 'e') {
+			db[n] += String(sent)[i+1]+String(sent)[i+2];
+			i = i + 2;
+			continue;
+		}
 		if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
 	    n = n + 1;
 	    }
