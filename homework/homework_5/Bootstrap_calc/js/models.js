@@ -141,7 +141,7 @@ function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
 	var res = document.getElementById('display1').value;
-	if (String(res).length > 43) {
+	if (String(res).length > 42) {
 	  	ifError();
 		return;
 	}
@@ -221,7 +221,7 @@ function getPercent() {
 	var exp = document.getElementById('display1').value;
 	var perc = 'Я ще не знаю як це рахувати :)';
 	setSizeId('display1', perc);
-	document.getElementById('display1').value = '0%';
+	document.getElementById('display1').value = '';
 	document.getElementById('display2').value = perc;
 }
 
