@@ -1,0 +1,17 @@
+div{
+	width: 100%;
+	height: 300px;
+	display: flex;
+	background: #ffffff;
+	align-items: center;
+	justify-content: center;
+
+}
+button {
+	padding: 10px 30px 10px 30px;
+	font-size: 36px;
+	border-radius: 10px;
+	color: #ffffff;
+	background: #6699ff;
+	cursor: pointer;
+}
