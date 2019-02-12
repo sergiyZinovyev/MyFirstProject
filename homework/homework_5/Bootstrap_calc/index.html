@@ -17,10 +17,10 @@
 			    <div class="name">Calculator</div>
 			    <div class="head_menu">
 			    	<div class="butt_h_m">&#8722</div>
-			    	<div class="butt_h_m"><div class="sq"></div></div>
+			    	<div class="butt_h_m" onClick="isBigCalc()"><div class="sq"></div></div>
 			    	<div class="butt_h_m butt_h_m_X" onClick="offCalc()">
-						<div class="X1"></div>
-						<div class="X2"></div>
+						    <div class="X1"></div>
+						    <div class="X2"></div>
 			    	</div>
 				</div>
 			</div>
@@ -43,16 +43,16 @@
 
 			<div class="row memory_c">
 				<div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='NogetParsing()'>MC</button>
+			    	<button class='butt_m' onClick='getMClear()'>MC</button>
 			    </div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m ' onClick='NogetProd()'>MR</button>
+			    	<button class='butt_m ' onClick='getMemory()'>MR</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getResalt(5)'>M+</button>
+			    	<button class='butt_m' onClick='getMPlus()'>M+</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m'>M-</button>
+			    	<button class='butt_m' onClick='getMMinus()'>M-</button>
 				</div>
 			    <div class="col-2 size_butt_m">
 			    	<button class='butt_m'>MS</button>

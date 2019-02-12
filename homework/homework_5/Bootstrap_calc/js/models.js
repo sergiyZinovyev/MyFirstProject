@@ -1,4 +1,11 @@
-function getParsing(sent) {
+var memory;
+var none = undefined;
+var reg_num = /[0-9]/;
+var reg_simb = /[\+\-\*\/]/;
+var reg_simb2 = /[\+\-\*\/\.]/;
+
+
+	function getParsing(sent) {
 	// розбирає вираз поелементно та повертає масив елементів
 	// sent - математичний вираз в строковому вигляді
 	var db = new Array();
@@ -145,6 +152,11 @@ function getNum (num){
 	  	ifError();
 		return;
 	}
+	if(/[0-9]/.test(res)){}
+	else if (!isFinite(res)) {
+		ifError();
+		return;
+	}
 	var last = String(res)[String(res).length - 1];
 	var before = String(res)[String(res).length - 2];
 	var none = undefined;
@@ -179,11 +191,17 @@ function getSquareRoot () {
 		ifError();
 		return;
 	}
+	if(/[0-9]/.test(exp)){}
+	else if (!isFinite(exp)) {
+		ifError();
+		return;
+	}
 	if (getResalt(exp)<0){
 		ifError();
 		return;
 	}
 	var sqrr = Math.sqrt(getResalt(exp));
+	sqrr = +sqrr.toFixed(16);
 	setSizeId('display1', sqrr);
 	document.getElementById('display1').value = sqrr;
 	document.getElementById('display2').value = "√(" + exp + ")";
@@ -197,7 +215,13 @@ function getSquare () {
 		ifError();
 		return;
 	}
-	var sqr = getResalt(exp)*getResalt(exp);
+	if(/[0-9]/.test(exp)){}
+	else if (!isFinite(exp)) {
+		ifError();
+		return;
+	}
+	var fix = getResalt(exp)*getResalt(exp);
+	sqr = +fix.toFixed(16);
 	setSizeId('display1', sqr);
 	document.getElementById('display1').value = sqr;
 	document.getElementById('display2').value = "(" + exp + ")^2";
@@ -211,7 +235,13 @@ function getDivByX() {
 		ifError();
 		return;
 	}
+	if(/[0-9]/.test(exp)){}
+	else if (!isFinite(exp)) {
+		ifError();
+		return;
+	}
 	var dbx = 1/getResalt(exp);
+	dbx = +dbx.toFixed(16);
 	setSizeId('display1', dbx);
 	document.getElementById('display1').value = dbx;
 	document.getElementById('display2').value = "1/(" + exp + ")";
@@ -253,8 +283,45 @@ function addMinus (){
 
 function insertExp() {
 	var exp = document.getElementById('display1').value;
+	if(/[0-9]/.test(exp)){}
+	else if (!isFinite(exp)) {
+		document.getElementById('display1').value = '';
+		return;
+	}
 	exp = exp.substring(0, exp.length - 1);
 	document.getElementById('display1').value = exp;
+}
+
+function getMPlus(){
+	val=document.getElementById('display1').value;
+		if (reg_simb2.test(String(val)[String(val).length - 1])){
+		ifError();
+		return;
+	}
+	val = Number(getResalt(val));
+	if (memory == undefined){memory = 0;}
+	memory += val;
+}
+
+function getMMinus(){
+	val=document.getElementById('display1').value;
+		if (reg_simb2.test(String(val)[String(val).length - 1])){
+		ifError();
+		return;
+	}
+	val = Number(getResalt(val));
+	if (memory == undefined){memory = 0;}
+	memory -= val;
+}
+
+function getMemory(){
+	if (memory == undefined){memory = 0;}
+	setSizeId('display1', memory);
+	document.getElementById('display1').value+= memory;
+}
+
+function getMClear(){
+	memory = 0;
 }
 
 function getOff() {
@@ -293,6 +360,24 @@ function onCalc(){
 function offCalc(){
 	visibleElementByClass('calc');
 	//visibleElementByClass('ico');
+}
+
+function isBigCalc(){
+	//збільшує/зменшує розмір калькулятора
+	  var element = document.getElementsByClassName('calc')[0]; 
+		var prop = window.getComputedStyle(element).width;
+	if (prop == '320px') {
+		element.style.width = '600px';
+		setTimeout ( function( ) {
+			element.style.transition = '0.5s';
+			}, 100);
+	}
+	else {
+		element.style.transition = '0.5s';
+		setTimeout (function(){
+		element.style.width = '320px';
+		}, 200);
+	}
 }
 function ifError(){
 	//document.getElementById('display1').style.background = 'red';
