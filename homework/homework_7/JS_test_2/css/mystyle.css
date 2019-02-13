@@ -1,8 +1,9 @@
 .func_for{
 	text-align: center;
 	width: 600px;
-  margin: auto;
-  padding: 20px;
+	margin: auto;
+	margin-bottom: 30px;
+	padding: 20px;
 	background: #cce6ff;
 }
 .name {
