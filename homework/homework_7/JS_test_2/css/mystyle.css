@@ -1,13 +1,43 @@
-div{
-	width: 100%;
-	height: 300px;
+.func_for{
+	text-align: center;
+	width: 600px;
+  margin: auto;
+  padding: 20px;
+	background: #cce6ff;
+}
+.name {
+	color: #ffffff;
+	background: #6699ff;
+	padding: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	margin: -20px -20px 0px -20px;
+}
+.text_func_for{
+	font-size: 24px;
+	padding: 10px;
+}
+.inp{
 	display: flex;
-	background: #ffffff;
-	align-items: center;
+	margin: auto;
 	justify-content: center;
-
+	margin-bottom: 50px;
+}
+.inp_func_for{
+	width: 35px;
+	font-size: 24px;
+	padding: 10px;
+	text-align: center;
+}
+.out_func_for{
+	margin-top: 10px;
+	width: 100%;
+	font-size: 24px;
+	text-align: center;
 }
 button {
+	display: block;
+	margin: auto;
 	padding: 10px 30px 10px 30px;
 	font-size: 36px;
 	border-radius: 10px;
