@@ -37,26 +37,32 @@ function defineEvenInRandomRange(min, max){
 		return false;
 	}
 }
-/*function getJoin(m){
-	alert('test');
-	for (var i off m) {
-		var new_arr = string(m[i]);
-		var text = '';
-		for(var n=0; n<=new_arr.length; n++){
-			if (n==0){
-				new_arr[n] = new_arr[n].toUpperCase();
-			}
+function getJoinArr(m){
+	var new_text;
+	for(var i=0;  i<m.length; i++) {
+		var new_arr = m[i];
+		var text;
+	  new_arr = String(new_arr);
+		for(var n = 0; n<new_arr.length; n++){
+			if(n == 0){
+				text = new_arr[n].toUpperCase();
+				continue;
+				}
 			text = text.concat('', new_arr[n]);
 		}
+		if (new_text == undefined) {
+			var new_text = text;
+			continue;
+			}
 		var new_text = new_text.concat(' ', text);
 	}
-	alert(new_text);
+	return new_text;
 }
 
-
+function getScript4(){
 var mas = ['lorem', 'ipsum', 'is', 'simply', 'dummy'];
-getJoin(mas);*/
-
+document.getElementById('output_join').value = getJoinArr(mas);
+}
 
 function getCountRepeat(){
 	var min2 = Number(document.getElementById('input1_random').value);
