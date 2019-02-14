@@ -36,23 +36,33 @@
 		</div>
 
 		<div class='func_for'>
-		  <div class='name'>Розрахунок за допомогою функції random із заданим діапазоном</div>
-		  <div class=text_func_for>Розрахунок кількості ітерацій для випадання парного числа в діапазоні</div>
-		  <div class='inp'>
-		    <div class=text_func_for>від</div>
-		    <input type='text' class='inp_func_for' id='input1_random' value=""></input>
-		    <div class=text_func_for>до</div>
-		    <input type='text' class='inp_func_for' id='input2_random' value=""></input>
-		  </div>
-		  <div class=text_func_for>отримати результат</div>
+			<div class='name'>Розрахунок за допомогою функції random із заданим діапазоном</div>
+			<div class=text_func_for>Розрахунок кількості ітерацій для випадання парного числа в діапазоні</div>
+			<div class='inp'>
+				<div class=text_func_for>від</div>
+				<input type='text' class='inp_func_for' id='input1_random' value=""></input>
+				<div class=text_func_for>до</div>
+				<input type='text' class='inp_func_for' id='input2_random' value=""></input>
+			</div>
+			<div class=text_func_for>отримати результат</div>
 			<button onclick="getCountRepeat()">script</button>
 			<input type='text' class='out_func_for' id='output_random' value=""></input>
 		</div>
 		
 		<div class='func_for'>
-		  <div class='name'>Об'єднання масиву + кожен елемент з великої літери</div>
-		  <button onclick="getScript4()">getJoinArr</button>
-		 <input type='text' class='out_func_for' id='output_join' value=""></input>
+			<div class='name'>Об'єднання масиву + кожен елемент з великої літери</div>
+			<div class=text_func_for>Введіть кожне слово в окрему комірку, додайте комірку, якщо не вистачає</div>
+			<div id='inp_2'>
+				<input type='text' class='inp_word' value=""></input>
+				<input type='text' class='inp_word' value=""></input>
+				<input type='text' class='inp_word' value=""></input>
+				<input type='text' class='inp_word' value=""></input>
+				<input type='text' class='inp_word' value=""></input>
+				<button id='button2' onclick="addInput()">add word</button>
+			</div>
+			<div class=text_func_for>отримати результат</div>
+			<button onclick="getScript4()">getJoinArr</button>
+			<textarea class='out_func_for' id='output_join' value=""></textarea>
 		</div>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>

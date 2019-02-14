@@ -23,6 +23,10 @@ function getSquare2(x, y){
 	return res;
 }
 function defineEvenInRandomRange(min, max){
+	if (min == max) {
+		console.log('задайте діапазон');
+		return;
+	}
 	var random = Math.floor(Math.random() * (max - min + 1) ) + min;
 	if(random == 0){
 		console.log(random, ' - zero');
@@ -40,6 +44,7 @@ function defineEvenInRandomRange(min, max){
 function getJoinArr(m){
 	var new_text;
 	for(var i=0;  i<m.length; i++) {
+		if (m[i] == '') {continue;}
 		var new_arr = m[i];
 		var text;
 	  new_arr = String(new_arr);
@@ -59,10 +64,7 @@ function getJoinArr(m){
 	return new_text;
 }
 
-function getScript4(){
-var mas = ['lorem', 'ipsum', 'is', 'simply', 'dummy'];
-document.getElementById('output_join').value = getJoinArr(mas);
-}
+
 
 function getCountRepeat(){
 	var min2 = Number(document.getElementById('input1_random').value);
@@ -86,5 +88,16 @@ function getFuncWhile(){
 	res = getSquare2(inp1, inp2);
 	document.getElementById('output_while').value = res;
 }
-
-	
+function getScript4(){
+	var mas = new Array();
+	var len = document.getElementsByClassName('inp_word').length;
+	for (var i = 0; i < len; i++){
+		mas[i] = document.getElementsByClassName('inp_word')[i].value;
+	}
+	document.getElementById('output_join').value = getJoinArr(mas);
+}
+function addInput(){
+	var input = document.getElementsByClassName('inp_word')[0].cloneNode(true);
+	input.value = '';
+	inp_2.insertBefore(input, button2);
+}	
