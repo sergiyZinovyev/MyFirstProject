@@ -4,165 +4,21 @@ var reg_num = /[0-9]/;
 var reg_simb = /[\+\-\*\/]/;
 var reg_simb2 = /[\+\-\*\/\.]/;
 
-
-	function getParsing(sent) {
-	// розбирає вираз поелементно та повертає масив елементів
-	// sent - математичний вираз в строковому вигляді
-	var db = new Array();
-	var n = 0;
-	var item = 0;
-	for (var i = item; i<String(sent).length; i++){
-		var current = String(sent)[i];
-		var next = String(sent)[i+1];
-		if (current == '+' || current == '-' || current == '*' || current == '/') {
-		  	if (i == 0 && current == '-'){
-				db[n] = String(sent)[i];
-				continue;
-			}
-			db[n] = String(sent)[i];
-			n = n + 1;
-			continue;
-		}
-		if (db[n] == undefined){
-			db[n] = String(sent)[i];
-			}
-		else {db[n] += String(sent)[i];}
-		if (next == 'e') {
-			db[n] += String(sent)[i+1]+String(sent)[i+2];
-			i = i + 2;
-			continue;
-		}
-		if (next == '+' || next == '-' || next == '/' || next == '*' || next == undefined){
-	    n = n + 1;
-	    }
-	}
-	//alert ('db='+db);
-	return db;
-}
-function getProd (sentarr){
-	// виконує тільки операції множення/ділення та повертає вираз в строковому вигляді
-	// sentarr - математичний вираз в строковому вигляді
-	var db2 = getParsing(sentarr);
-	prod = new Array();
-	var n = 0;
-	var x = 0; 
-	for (var i = 0; i<db2.length; i++){
-		var current2 = db2[i];
-		var next2 = db2[i+1];
-		var afternext2 = db2[i+2];
-		if (x == 0 && (next2 == '*' || next2 == '/')){
-		  	if (next2 == '*' ){
-		  		var fix = current2*afternext2;
-		  		prod[n] = +fix.toFixed(16);
-		  		n = n + 1;
-	  			i = i + 2;
-	  			x = 1;
-		  		continue;
-		  	}
-		  	if (next2 == '/' ){
-		  		var fix = current2/afternext2;
-		  		prod[n] = +fix.toFixed(16);
-		  		n = n + 1;
-		  		i = i + 2;
-		  		x = 1;
-		  		continue;
-		  	}
-		}
-		prod[n] = current2;
-		n = n + 1;
-	}
-	for (var a=0; a<prod.length; a++){	
-	    if(prod[a] == '*' || prod[a] == '/'){
-			prod = prod.join('');
-			getProd (prod);
-			break;
-		}
-	}
-	if (Array.isArray(prod)){prod = prod.join('');}
-	return prod;
-}
-function getSumm (totalprod) {
-	// виконує тільки операції додавання/віднімання та повертає вираз в строковому вигляді
-	// математичний вираз в строковому вигляді (має містити тільки операції додавання/віднімання)
-	var db2 = getParsing(totalprod);
-	totalcalc = new Array();
-	var n = 0;
-	var x = 0; 
-	for (var i = 0; i<db2.length; i++){
-		var current2 = db2[i];
-		var next2 = db2[i+1];
-		var afternext2 = db2[i+2];
-		if (x == 0 && (next2 == '+' || next2 == '-')){
-		  	if (next2 == '+' ){
-		  		var fix = Number(current2)+Number(afternext2);
-		  		totalcalc[n] = +fix.toFixed(16);
-		  		n = n + 1;
-	  			i = i + 2;
-	  			x = 1;
-		  		continue;
-		  	}
-		  	if (next2 == '-' ){
-		  		var fix = Number(current2)-Number(afternext2);
-		  		totalcalc[n] = +fix.toFixed(16);
-			  	n = n + 1;
-		  		i = i + 2;
-		  		x = 1;
-		  		continue;
-		  	}
-		}
-		totalcalc[n] = current2;
-		n = n + 1;
-	}
-	for (var a=0; a<totalcalc.length; a++){	
-	  if(totalcalc[a] == '+' || totalcalc[a] == '-'){
-		  totalcalc = totalcalc.join('');
-		  getSumm (totalcalc);
-		  break;
-		}
-	}
-	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
-	return totalcalc;
-}
-function getResalt (dd){
-	// обраховує математичний вираз записаний в строковому форматі
-	//var dd = document.getElementById('display1').value;
-	totalcalc = getSumm(getProd(dd));
-	//alert ('res3: '+totalcalc);
-	return totalcalc;
-}
-
-function setSizeId(id, val){
-	// зменшує розмір шрифта, якщо кількість символів більша 11
-	// id елемента
-	// val - значення яке потрібно вивести на екран
-	document.getElementById(id).style.fontSize = '50px';
-	if (String(val).length > 9){
-		document.getElementById(id).style.fontSize = '24px';
-    }
-  	if (String(val).length > 20){
-		document.getElementById(id).style.fontSize = '12px';
-    }
-}
-
 function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
-	var res = document.getElementById('display1').value;
-	if (String(res).length > 42) {
+	var exp = document.getElementById('display1').value;
+	if (String(exp).length > 42) {
 	  	ifError();
 		return;
 	}
-	if(/[0-9]/.test(res)){}
-	else if (!isFinite(res)) {
+	if(reg_num.test(exp)){}
+	else if (!isFinite(exp)) {
 		ifError();
 		return;
 	}
-	var last = String(res)[String(res).length - 1];
-	var before = String(res)[String(res).length - 2];
-	var none = undefined;
-	var reg_num = /[0-9]/;
-	var reg_simb = /[\+\-\*\/]/;
-	var reg_simb2 = /[\+\-\*\/\.]/;
+	var last = String(exp)[String(exp).length - 1];
+	var before = String(exp)[String(exp).length - 2];
   	if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
 		ifError();
 		return;
@@ -172,21 +28,21 @@ function getNum (num){
 		return;
 	}
   	if (num == '.'){
-    	var current_db = getParsing(res);
+    	var current_db = getParsing(exp);
     	var last_item = current_db[current_db.length - 1];
-    	if (/\./.test(last_item)/* && /\./.test(num)*/){
+    	if (/\./.test(last_item)){
 	  		ifError();
 	  		return;
   		}
 	}
-	setSizeId('display1', res);
+	setSizeId('display1', exp);
 	document.getElementById('display1').value += num;
 }	
 
 function getSquareRoot () {
 	var exp = document.getElementById('display1').value;
 	var last = String(exp)[String(exp).length - 1];
-	var reg_simb2 = /[\+\-\*\/\.]/;
+	//var reg_simb2 = /[\+\-\*\/\.]/;
 	if (reg_simb2.test(last)){
 		ifError();
 		return;
@@ -210,7 +66,7 @@ function getSquareRoot () {
 function getSquare () {
 	var exp = document.getElementById('display1').value;
 	var last = String(exp)[String(exp).length - 1];
-	var reg_simb2 = /[\+\-\*\/\.]/;
+	//var reg_simb2 = /[\+\-\*\/\.]/;
 	if (reg_simb2.test(last)){
 		ifError();
 		return;
@@ -220,8 +76,8 @@ function getSquare () {
 		ifError();
 		return;
 	}
-	var fix = getResalt(exp)*getResalt(exp);
-	sqr = +fix.toFixed(16);
+	var sqr = getResalt(exp)*getResalt(exp);
+	sqr = +sqr.toFixed(16);
 	setSizeId('display1', sqr);
 	document.getElementById('display1').value = sqr;
 	document.getElementById('display2').value = "(" + exp + ")^2";
@@ -230,7 +86,7 @@ function getSquare () {
 function getDivByX() {
 	var exp = document.getElementById('display1').value;
 	var last = String(exp)[String(exp).length - 1];
-	var reg_simb2 = /[\+\-\*\/\.]/;
+	//var reg_simb2 = /[\+\-\*\/\.]/;
 	if (reg_simb2.test(last)){
 		ifError();
 		return;
