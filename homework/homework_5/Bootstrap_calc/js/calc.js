@@ -44,13 +44,12 @@ function getSquareRoot () {
 	var last = String(exp)[String(exp).length - 1];
 	//var reg_simb2 = /[\+\-\*\/\.]/;
 	if (reg_simb2.test(last)){
-		ifError();
-		return;
+		//ifError();
+		return ifError();
 	}
 	if(/[0-9]/.test(exp)){}
 	else if (!isFinite(exp)) {
-		ifError();
-		return;
+		return ifError();
 	}
 	if (getResalt(exp)<0){
 		ifError();
