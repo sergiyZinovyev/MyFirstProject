@@ -48,10 +48,10 @@
 			    	<button class='butt_m ' onClick='getMemory()'>MR</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getMPlus()'>M+</button>
+			    	<button class='butt_m' onClick='getMPluMinus("+")'>M+</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getMMinus()'>M-</button>
+			    	<button class='butt_m' onClick='getMPluMinus("-")'>M-</button>
 				</div>
 			    <div class="col-2 size_butt_m">
 			    	<button class='butt_m'>MS</button>
@@ -63,16 +63,16 @@
 			
 			<div class="row buttons_c">
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='getPercent()'>%</button>
+			    	<button class='butt_b' onClick='doMathOper("pers")'>%</button>
 			    </div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='getSquareRoot()'>&#8730</button>
+			    	<button class='butt_b' onClick='doMathOper("root")'>&#8730</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b' onClick='getSquare()'>X<sup>2</sup></button>
+					<button class='butt_b' onClick='doMathOper("square")'>X<sup>2</sup></button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='getDivByX()'>1/x</button>
+			    	<button class='butt_b' onClick='doMathOper("div")'>1/x</button>
 				</div>
 			    <div class="col-3 size_butt_b">
 			    	<button class='butt_b' onClick='getOff()'>CE</button>
@@ -132,7 +132,7 @@
 					<button class='butt_b' onClick='getNum(".")'>,</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='getCalc()'>=</button>
+			    	<button class='butt_b func' onClick='doMathOper("calc")'>=</button>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,4 @@
-var memory;
-var none = undefined;
+
 var reg_num = /[0-9]/;
 var reg_simb = /[\+\-\*\/]/;
 var reg_simb2 = /[\+\-\*\/\.]/;
@@ -144,3 +143,48 @@ function setSizeId(id, val){
     }
     return document.getElementById(id).style.fontSize = size_id;
 }
+
+function getValidLast(ex) {
+	var last = String(ex)[String(ex).length - 1];
+	if (!/[0-9]/.test(last)){
+		return false;
+	}
+	if (!isFinite(getResalt(ex))) {
+		return false;
+	}
+}	
+
+function visibleElementByClass(name, item){
+	//відображує або приховує вказаний елемент заданого класу
+	//name - назва класу контейнера
+	//item - порядковий номер контейнера (рахується від 0)
+	//по замовчуванню item=0 (перший елемент)
+	if (item == undefined) {item = 0;}
+	element = document.getElementsByClassName(name)[item]; 
+	var prop = window.getComputedStyle(element).display;
+	if (prop == 'none') {
+		element.style.display = 'block';
+		setTimeout ( function( ) {
+			element.style.transition = '0.5s';
+			element.style.opacity = '1';
+			}, 100);
+	}
+	else {
+		element.style.transition = '0.5s';
+		element.style.opacity = '0';
+		setTimeout ("element.style.display = 'none'", 500);
+	}
+}
+
+function ifErrorId(id){
+	document.getElementById(id).style.color = 'red';
+	setTimeout(function(){document.getElementById(id).style.color = 'black';},200);
+}	
+
+
+// отримання поточного розміру шрифта
+//var elementDisplay = document.getElementById('display1');
+//var sizeF = getComputedStyle(elementDisplay).fontSize;
+//alert (parseInt(sizeF)); /*отримати лише цифри*/
+//alert (String(exp)[String(exp).length - 1]); /*отримати останній символ строки*/
+//test
