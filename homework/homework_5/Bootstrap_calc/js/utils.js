@@ -1,8 +1,3 @@
-
-var reg_num = /[0-9]/;
-var reg_simb = /[\+\-\*\/]/;
-var reg_simb2 = /[\+\-\*\/\.]/;
-
 function getParsing(sent) {
 // розбирає математичний вираз поелементно та повертає масив елементів
 // sent - математичний вираз в строковому вигляді
@@ -12,7 +7,7 @@ var item = 0;
 for (var i = item; i<String(sent).length; i++){
 	var current = String(sent)[i];
 	var next = String(sent)[i+1];
-	if (reg_simb.test(current)) {
+	if (/[\+\-\*\/]/.test(current)) {
 	  	if (i == 0 && current == '-'){
 			db[n] = String(sent)[i];
 			continue;
@@ -30,20 +25,19 @@ for (var i = item; i<String(sent).length; i++){
 		i = i + 2;
 		continue;
 	}
-	if (reg_simb.test(next) || next == undefined){
+	if (/[\+\-\*\/]/.test(next) || next == undefined){
     n = n + 1;
     }
 }
-//alert ('db='+db);
 return db;
 }
-function getSumm (totalprod, act) {
+function getResult (totalprod, act) {
 	if (act == 'plus'){
 	    var operator1 = '+';
 	    var operator2 = '-';
 	}
 	else {
-		  var operator1 = '*';
+		var operator1 = '*';
 	    var operator2 = '/';
 	}
 	var db2 = getParsing(totalprod);
@@ -56,28 +50,28 @@ function getSumm (totalprod, act) {
 		var afternext2 = db2[i+2];
 		if (x == 0 && (next2 == operator1 || next2 == operator2)){
 		  	switch (next2){
-				    case operator1:
-				        switch (operator1){
-					          case '+':
-					              var fix = Number(current2)+Number(afternext2);
-					              break;
-					          case '*':
-					              var fix = Number(current2)*Number(afternext2);
-					              break;
-				        }
-				        break;
-				    case operator2:
-				        switch (operator2){
-					          case '-':
-					              var fix = Number(current2)-Number(afternext2);
-					              break;
-					          case '/':
-					              var fix = Number(current2)/Number(afternext2);
-					              break;
-					      }
-					      break;
-			  }
-			  totalcalc[n] = +fix.toFixed(16);
+			    case operator1:
+			        switch (operator1){
+						case '+':
+							var fix = Number(current2)+Number(afternext2);
+							break;
+						case '*':
+							var fix = Number(current2)*Number(afternext2);
+							break;
+			        }
+			    break;
+			    case operator2:
+			        switch (operator2){
+				        case '-':
+				            var fix = Number(current2)-Number(afternext2);
+				            break;
+				        case '/':
+				            var fix = Number(current2)/Number(afternext2);
+				            break;
+				    }
+				break;
+			}
+			totalcalc[n] = +fix.toFixed(16);
 		  	n = n + 1;
 	  		i = i + 2;
 	  		x = 1;
@@ -87,21 +81,24 @@ function getSumm (totalprod, act) {
 		n = n + 1;
 	}
 	for (var a=0; a<totalcalc.length; a++){	
-	  if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
-		  totalcalc = totalcalc.join('');
-		  getSumm (totalcalc, act);
-		  break;
+	  	if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
+		  	totalcalc = totalcalc.join('');
+		  	getResult (totalcalc, act);
+		  	break;
 		}
 	}
 	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
+	if (/[\+\-]/.test(totalcalc)){
+		getResult (totalcalc, 'plus');
+	}
 	return totalcalc;
 }
 
-function getResalt (dd){
+/*function getResalt (dd){
 	// обраховує математичний вираз записаний в строковому форматі
 	totalcalc = getSumm(getSumm(dd), 'plus');
 	return totalcalc;
-}
+}*/
 
 function setSizeId(id, val){
 	// зменшує розмір шрифта, якщо кількість символів більша 11
@@ -125,7 +122,7 @@ function getValidLast(ex) {
 	if (!/[0-9]/.test(last)){
 		return false;
 	}
-	if (!isFinite(getResalt(ex))) {
+	if (!isFinite(getResult(ex))) {
 		return false;
 	}
 }	
