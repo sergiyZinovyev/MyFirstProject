@@ -37,51 +37,15 @@ for (var i = item; i<String(sent).length; i++){
 //alert ('db='+db);
 return db;
 }
-function getProd (sentarr){
-	// виконує тільки операції множення/ділення та повертає вираз в строковому вигляді
-	// sentarr - математичний вираз в строковому вигляді
-	var db2 = getParsing(sentarr);
-	prod = new Array();
-	var n = 0;
-	var x = 0; 
-	for (var i = 0; i<db2.length; i++){
-		var current2 = db2[i];
-		var next2 = db2[i+1];
-		var afternext2 = db2[i+2];
-		if (x == 0 && (next2 == '*' || next2 == '/')){
-		  	if (next2 == '*' ){
-		  		var fix = current2*afternext2;
-		  		prod[n] = +fix.toFixed(16);
-		  		n = n + 1;
-	  			i = i + 2;
-	  			x = 1;
-		  		continue;
-		  	}
-		  	if (next2 == '/' ){
-		  		var fix = current2/afternext2;
-		  		prod[n] = +fix.toFixed(16);
-		  		n = n + 1;
-		  		i = i + 2;
-		  		x = 1;
-		  		continue;
-		  	}
-		}
-		prod[n] = current2;
-		n = n + 1;
+function getSumm (totalprod, act) {
+	if (act == 'plus'){
+	    var operator1 = '+';
+	    var operator2 = '-';
 	}
-	for (var a=0; a<prod.length; a++){	
-	    if(prod[a] == '*' || prod[a] == '/'){
-			prod = prod.join('');
-			getProd (prod);
-			break;
-		}
+	else {
+		  var operator1 = '*';
+	    var operator2 = '/';
 	}
-	if (Array.isArray(prod)){prod = prod.join('');}
-	return prod;
-}
-function getSumm (totalprod) {
-	// виконує тільки операції додавання/віднімання та повертає вираз в строковому вигляді
-	// математичний вираз в строковому вигляді (має містити тільки операції додавання/віднімання)
 	var db2 = getParsing(totalprod);
 	totalcalc = new Array();
 	var n = 0;
@@ -90,40 +54,52 @@ function getSumm (totalprod) {
 		var current2 = db2[i];
 		var next2 = db2[i+1];
 		var afternext2 = db2[i+2];
-		if (x == 0 && (next2 == '+' || next2 == '-')){
-		  	if (next2 == '+' ){
-		  		var fix = Number(current2)+Number(afternext2);
-		  		totalcalc[n] = +fix.toFixed(16);
-		  		n = n + 1;
-	  			i = i + 2;
-	  			x = 1;
-		  		continue;
-		  	}
-		  	if (next2 == '-' ){
-		  		var fix = Number(current2)-Number(afternext2);
-		  		totalcalc[n] = +fix.toFixed(16);
-			  	n = n + 1;
-		  		i = i + 2;
-		  		x = 1;
-		  		continue;
-		  	}
+		if (x == 0 && (next2 == operator1 || next2 == operator2)){
+		  	switch (next2){
+				    case operator1:
+				        switch (operator1){
+					          case '+':
+					              var fix = Number(current2)+Number(afternext2);
+					              break;
+					          case '*':
+					              var fix = Number(current2)*Number(afternext2);
+					              break;
+				        }
+				        break;
+				    case operator2:
+				        switch (operator2){
+					          case '-':
+					              var fix = Number(current2)-Number(afternext2);
+					              break;
+					          case '/':
+					              var fix = Number(current2)/Number(afternext2);
+					              break;
+					      }
+					      break;
+			  }
+			  totalcalc[n] = +fix.toFixed(16);
+		  	n = n + 1;
+	  		i = i + 2;
+	  		x = 1;
+		  	continue;
 		}
 		totalcalc[n] = current2;
 		n = n + 1;
 	}
 	for (var a=0; a<totalcalc.length; a++){	
-	  if(totalcalc[a] == '+' || totalcalc[a] == '-'){
+	  if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
 		  totalcalc = totalcalc.join('');
-		  getSumm (totalcalc);
+		  getSumm (totalcalc, act);
 		  break;
 		}
 	}
 	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
 	return totalcalc;
 }
+
 function getResalt (dd){
 	// обраховує математичний вираз записаний в строковому форматі
-	totalcalc = getSumm(getProd(dd));
+	totalcalc = getSumm(getSumm(dd), 'plus');
 	return totalcalc;
 }
 
@@ -180,6 +156,11 @@ function ifErrorId(id){
 	document.getElementById(id).style.color = 'red';
 	setTimeout(function(){document.getElementById(id).style.color = 'black';},200);
 }	
+
+
+
+
+
 
 
 // отримання поточного розміру шрифта
