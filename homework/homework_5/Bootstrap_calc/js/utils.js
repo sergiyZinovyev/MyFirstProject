@@ -80,6 +80,7 @@ function getResult (totalprod, act) {
 		totalcalc[n] = current2;
 		n = n + 1;
 	}
+	if (totalcalc.length > 1){
 	for (var a=0; a<totalcalc.length; a++){	
 	  	if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
 		  	totalcalc = totalcalc.join('');
@@ -87,6 +88,8 @@ function getResult (totalprod, act) {
 		  	break;
 		}
 	}
+	}
+	else {return totalcalc;}
 	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
 	if (/[\+\-]/.test(totalcalc)){
 		getResult (totalcalc, 'plus');
