@@ -5,6 +5,8 @@ var reg_simb = /[\+\-\*\/]/;
 var reg_simb2 = /[\+\-\*\/\.]/;
 var display1 = document.getElementById('display1');
 
+setSizeId('display1', document.getElementById('display1'));
+
 //-----------------------------------------------------------//
 //            операції введення/видалення даних              
 //-----------------------------------------------------------//
@@ -12,7 +14,7 @@ function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
 	var exp = display1.value;
-	if (String(exp).length > 42) {
+	if (String(exp).length > 200) {
 		return ifErrorId('display1');
 	}
 	if(reg_num.test(exp)){}
@@ -36,6 +38,7 @@ function getNum (num){
 	}
 	setSizeId('display1', exp);
 	display1.value += num;
+	
 }
 
 function addMinus (){
