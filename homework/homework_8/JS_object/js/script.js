@@ -18,21 +18,22 @@ alert( calculator.sum() );
 alert( calculator.mul() );*/
 
 function Calculator(num1, num2) {
-   this.number1=num1;
-   this.number2=num2;
-   this.sum=function(){
-	     var s = this.number1 + this.number2;
-       return alert('Сума='+s);
-   };
-   this.mul=function(){
-	     var s = this.number1 * this.number2;
-       return alert('Добуток='+s);
-   };
+    this.number1=num1;
+    this.number2=num2;
+    this.sum=function(){
+	    var s = this.number1 + this.number2;
+        return alert('Сума='+s);
+    };
+    this.mul=function(){
+	    var s = this.number1 * this.number2;
+        return alert('Добуток='+s);
+    };
 }
 
 var calc = new Calculator(2, 3);
 calc.sum();
 calc.mul();
+console.log(calc[0]);
 
 
 

@@ -31,6 +31,7 @@ for (var i = item; i<String(sent).length; i++){
 }
 return db;
 }
+
 function getResult (totalprod, act) {
 	if (act == 'plus'){
 	    var operator1 = '+';
@@ -81,13 +82,13 @@ function getResult (totalprod, act) {
 		n = n + 1;
 	}
 	if (totalcalc.length > 1){
-	for (var a=0; a<totalcalc.length; a++){	
-	  	if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
-		  	totalcalc = totalcalc.join('');
-		  	getResult (totalcalc, act);
-		  	break;
+		for (var a=0; a<totalcalc.length; a++){	
+		  	if(totalcalc[a] == operator1 || totalcalc[a] == operator2){
+			  	totalcalc = totalcalc.join('');
+			  	getResult (totalcalc, act);
+			  	break;
+			}
 		}
-	}
 	}
 	else {return totalcalc;}
 	if (Array.isArray(totalcalc)){totalcalc = totalcalc.join('');}
@@ -102,23 +103,6 @@ function getResult (totalprod, act) {
 	totalcalc = getSumm(getSumm(dd), 'plus');
 	return totalcalc;
 }*/
-
-function setSizeId(id, val){
-	// зменшує розмір шрифта, якщо кількість символів більша 11
-	// id елемента
-	// val - значення яке потрібно вивести на екран
-	var size_id;
-	if (String(val).length <= 9){
-		size_id = '50px';
-    }
-	if (String(val).length > 9){
-		size_id = '24px';
-    }
-  	if (String(val).length > 20){
-		size_id = '12px';
-    }
-    return document.getElementById(id).style.fontSize = size_id;
-}
 
 function getValidLast(ex) {
 	var last = String(ex)[String(ex).length - 1];
@@ -157,11 +141,45 @@ function ifErrorId(id){
 	setTimeout(function(){document.getElementById(id).style.color = 'black';},200);
 }	
 
+function textWidth(text, fontSize, fontFamily) {
+    var tag = document.createElement("div");
+    tag.style.position = "absolute";
+    //tag.style.left = "-999em";
+    tag.style.whiteSpace = "nowrap";
+    tag.style.fontFamily = fontFamily;
+    tag.style.fontSize = fontSize+"px";
+    tag.innerHTML = text;
 
+    document.body.appendChild(tag);
 
+    var result = tag.clientWidth;
 
+    document.body.removeChild(tag);
 
+    return result;
+}
 
+function setSizeId(id, val){
+	// зменшує розмір шрифта
+	// id елемента
+	// val - значення яке потрібно вивести на екран
+	var element = document.getElementById(id);
+
+	//var size = parseInt(getComputedStyle(element).fontSize);
+	var size = 50;
+	var font = getComputedStyle(element).fontFamily;
+	var width = element.clientWidth;
+
+		for (var i = 1; i > 0; i++) {
+			if(textWidth(val+'9', size, font) < width){
+			var size_id = size + 'px';
+			break;
+			}
+			else {size = size - 1;}
+		}
+
+    return document.getElementById(id).style.fontSize = size_id;
+}
 
 // отримання поточного розміру шрифта
 //var elementDisplay = document.getElementById('display1');
