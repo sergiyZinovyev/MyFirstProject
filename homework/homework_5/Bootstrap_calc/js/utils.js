@@ -142,6 +142,8 @@ function ifErrorId(id){
 }	
 
 function textWidth(text, fontSize, fontFamily) {
+	//отримати ширину заданого тексту
+	//при заданому розмірі та стилі шрифта
     var tag = document.createElement("div");
     tag.style.position = "absolute";
     //tag.style.left = "-999em";
@@ -165,13 +167,15 @@ function setSizeId(id, val){
 	// val - значення яке потрібно вивести на екран
 	var element = document.getElementById(id);
 
-	//var size = parseInt(getComputedStyle(element).fontSize);
+	/*element.style.fontSize = 'revert';
+	alert(getComputedStyle(element).fontSize);
+	var size = parseInt(getComputedStyle(element).fontSize);*/
 	var size = 50;
 	var font = getComputedStyle(element).fontFamily;
 	var width = element.clientWidth;
 
 		for (var i = 1; i < 50; i++) {
-			if(textWidth(val+'9', size, font) < width){
+			if(textWidth(val+'_', size, font) < width){
 			var size_id = size + 'px';
 			break;
 			}
