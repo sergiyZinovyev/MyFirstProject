@@ -73,7 +73,7 @@ function getOff() {
 //                 математичні операції                      
 //-----------------------------------------------------------//
 
-function doMathOper(oper) {
+/*function doMathOper(oper) {
 	var exp = display1.value;
 	if (getValidLast(exp) == false){
 		return ifErrorId('display1');
@@ -105,7 +105,7 @@ function doMathOper(oper) {
 	setSizeId('display1', exp);
 	display1.value = exp;
 	document.getElementById('display2').value = display2_text;
-}
+}*/
 
 //-----------------------------------------------------------//
 //                  операції з пам'ттю                       

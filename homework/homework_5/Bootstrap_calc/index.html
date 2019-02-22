@@ -63,16 +63,16 @@
 			
 			<div class="row buttons_c">
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='doMathOper("pers")'>%</button>
+			    	<button class='butt_b' onClick='calc.processor.doMathOper("pers")'>%</button>
 			    </div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='doMathOper("root")'>&#8730</button>
+			    	<button class='butt_b' onClick='calc.processor.doMathOper("root")'>&#8730</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b' onClick='doMathOper("square")'>X<sup>2</sup></button>
+					<button class='butt_b' onClick='calc.processor.doMathOper("square")'>X<sup>2</sup></button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='doMathOper("div")'>1/x</button>
+			    	<button class='butt_b' onClick='calc.processor.doMathOper("div")'>1/x</button>
 				</div>
 			    <div class="col-3 size_butt_b">
 			    	<button class='butt_b' onClick='getOff()'>CE</button>
@@ -132,7 +132,7 @@
 					<button class='butt_b' onClick='getNum(".")'>,</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='doMathOper("calc")'>=</button>
+			    	<button class='butt_b func' onClick='calc.processor.doMathOper("calc")'>=</button>
 				</div>
 			</div>
 		</div>
@@ -142,8 +142,9 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     	<script src="js/popper.mim.js"></script>
     	<script src="js/bootstrap.min.js"></script>
-	    <script src="js/calc.js"></script>
-	    <script src="js/utils.js"></script>
+	    <script src="js_calc/calc.js"></script>
+	    <script src="js_calc/utils.js"></script>
+	    <script src="js_calc/objects.js"></script>
 	</body>
 </html>
 
