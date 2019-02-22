@@ -4,6 +4,7 @@ var reg_num = /[0-9]/;
 var reg_simb = /[\+\-\*\/]/;
 var reg_simb2 = /[\+\-\*\/\.]/;
 var display1 = document.getElementById('display1');
+setSizeId('display1', document.getElementById('display1'));
 
 //-----------------------------------------------------------//
 //            операції введення/видалення даних              

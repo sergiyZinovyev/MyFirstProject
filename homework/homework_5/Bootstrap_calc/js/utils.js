@@ -170,7 +170,7 @@ function setSizeId(id, val){
 	var font = getComputedStyle(element).fontFamily;
 	var width = element.clientWidth;
 
-		for (var i = 1; i > 0; i++) {
+		for (var i = 1; i < 50; i++) {
 			if(textWidth(val+'9', size, font) < width){
 			var size_id = size + 'px';
 			break;
