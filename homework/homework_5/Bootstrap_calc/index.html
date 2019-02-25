@@ -57,7 +57,7 @@
 			    	<button class='butt_m'>MS</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m'>M<sup>&#9660</sup></button>
+			    	<button class='butt_m' onClick='alert (calc.expression)'>M<sup>&#9660</sup></button>
 			    </div>
 			</div>
 			
@@ -126,7 +126,7 @@
 			    	<button class='butt_b' onClick='addMinus()'>&plusmn</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='getNum(0)'>0</button>
+			    	<button class='butt_b b2' onClick='calc.btn = 0; calc.display()'>0</button>
 				</div>
 				<div class="col-3 size_butt_b">
 					<button class='butt_b' onClick='getNum(".")'>,</button>
