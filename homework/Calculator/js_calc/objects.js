@@ -61,16 +61,25 @@ var calc = {
 		this.expression = exp;
 		document.getElementById('display2').value = display2_text;
 	},
+	insertExp: function () {
+	   var exp = this.expression;
+	    if (/[0-9]/.test(exp)) {
+		    exp = String(exp);
+		    exp = exp.substring(0, exp.length - 1);
+	    }
+	    else { exp = ''; }
+	    return this.expression = exp;
+  }	,
+  getClear: function () {
+	  document.getElementById('display2').value = "";
+	  calc.expression = '';			
+  },
 	buttons: function (val){
-		if (/[a-z]/.test(val)){this.doMathOper(val);}
+		if (val == 'clear'){this.getClear();}
+		else if (val == 'insexp'){this.insertExp();}
+		else if (/[a-z]/.test(val)){this.doMathOper(val);}
 		else {calc.btn = val;}
 		this.display();
 	}
 }
 
-
-function getOff() {
-	display1.value = "";
-	document.getElementById('display2').value = "";
-	calc.expression = '';			
-}
