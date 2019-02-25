@@ -64,10 +64,10 @@ function insertExp() {
 	return display1.value = exp;
 }	
 
-function getOff() {
+/*function getOff() {
 	display1.value = "";
 	document.getElementById('display2').value = "";			
-}
+}*/
 
 //-----------------------------------------------------------//
 //                 математичні операції                      
