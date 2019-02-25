@@ -34,25 +34,13 @@ var processor = {
 			document.getElementById('display2').value = display2_text;
 		}
 }
-
-function Button(val){
-	this.value = val;
-}
-var btn = new Button(5);
-//alert (btn.value);
-
 var buttons = {}
 var display = {}
 
 var calc = {
-	expression: 'exp',
 	processor: processor,
-  set btn (value) { 
-      this.expression = value; 
-  },
-	display: function(){display1.value += this.expression;}
+	buttons: buttons,
+	display: display
 }
 
-//calc.btn = 6;
-//alert (calc.expression);
-//alert(calc.processor);
+alert(calc.processor);
