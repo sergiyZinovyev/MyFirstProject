@@ -9,7 +9,7 @@ var display1 = document.getElementById('display1');
 //-----------------------------------------------------------//
 //            операції введення/видалення даних              
 //-----------------------------------------------------------//
-function getNum (num){
+/*function getNum (num){
 	//додає ще один символ на екран, якщо він відповідає вимогам
 	//num - символ який потрібно додати
 	var exp = display1.value;
@@ -38,9 +38,9 @@ function getNum (num){
 	setSizeId('display1', exp);
 	display1.value += num;
 	
-}
+}*/
 
-function addMinus (){
+/*function addMinus (){
 	var res = display1.value;
 	var first = String(res)[0];
 	if (first == undefined) {return;}
@@ -52,8 +52,8 @@ function addMinus (){
 		display1.value = res;
 	}
 }
-
-function insertExp() {
+*/
+/*function insertExp() {
 	var exp = display1.value;
 	if (/[0-9]/.test(exp)) {
 		exp = exp.substring(0, exp.length - 1);
@@ -62,7 +62,7 @@ function insertExp() {
 		exp = '';
 	}
 	return display1.value = exp;
-}	
+}*/	
 
 /*function getOff() {
 	display1.value = "";
@@ -73,7 +73,7 @@ function insertExp() {
 //                 математичні операції                      
 //-----------------------------------------------------------//
 
-function doMathOper(oper) {
+/*function doMathOper(oper) {
 	var exp = display1.value;
 	if (getValidLast(exp) == false){
 		return ifErrorId('display1');
@@ -105,7 +105,7 @@ function doMathOper(oper) {
 	setSizeId('display1', exp);
 	display1.value = exp;
 	document.getElementById('display2').value = display2_text;
-}
+}*/
 
 //-----------------------------------------------------------//
 //                  операції з пам'ттю                       

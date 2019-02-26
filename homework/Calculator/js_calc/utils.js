@@ -175,7 +175,7 @@ function setSizeId(id, val){
 	var width = element.clientWidth;
 
 		for (var i = 1; i < 50; i++) {
-			if(textWidth(val+'_', size, font) < width){
+			if(textWidth(val, size, font) < width){
 			var size_id = size + 'px';
 			break;
 			}
