@@ -111,7 +111,7 @@ var display1 = document.getElementById('display1');
 //                  операції з пам'ттю                       
 //-----------------------------------------------------------//
 
-function getMPluMinus(sign){
+/*function getMPluMinus(sign){
 	val=display1.value;
 		if (reg_simb2.test(String(val)[String(val).length - 1])){
 		ifError();
@@ -128,13 +128,13 @@ function getMPluMinus(sign){
 			break;
 	}
 	return memory;
-}
+}*/
 
-function getMemory(){
+/*function getMemory(){
 	if (memory == undefined){memory = 0;}
 	setSizeId('display1', memory);
 	display1.value+= memory;
-}
+}*/
 
 function getMClear(){
 	memory = 0;

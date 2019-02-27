@@ -42,22 +42,22 @@
 
 			<div class="row memory_c">
 				<div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getMClear()'>MC</button>
+			    	<button class='butt_m' onClick='calc.buttons(this.innerHTML)'>MC</button>
 			    </div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m ' onClick='getMemory()'>MR</button>
+			    	<button class='butt_m ' onClick='calc.buttons(this.innerHTML)'>MR</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getMPluMinus("+")'>M+</button>
+			    	<button class='butt_m' onClick='calc.buttons("P")'>M+</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='getMPluMinus("-")'>M-</button>
+			    	<button class='butt_m' onClick='calc.buttons("M")'>M-</button>
 				</div>
 			    <div class="col-2 size_butt_m">
 			    	<button class='butt_m'>MS</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='alert (calc.expression)'>M<sup>&#9660</sup></button>
+			    	<button class='butt_m' onClick='alert (calc.memory)'>M<sup>&#9660</sup></button>
 			    </div>
 			</div>
 			

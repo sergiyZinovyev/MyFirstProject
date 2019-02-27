@@ -1,6 +1,11 @@
 var calc = {
+
 	expression: '',
+
 	history: '',
+
+	memory: '',
+
 	set btn (num) { 
 		var exp = this.expression;
 		if (String(exp).length > 200) {
@@ -27,8 +32,11 @@ var calc = {
 		}
 		this.expression += num;
 	},
+
 	display1: new Display('display1'),
+
 	display2: new Display('display2'),	
+
 	doMathOper: function (oper) {
 		var exp = this.expression;
 		if (getValidLast(exp) == false){
@@ -61,6 +69,7 @@ var calc = {
 		this.expression = String(exp);
 		this.history = String(display2_text);
 	},
+
 	insertExp: function () {
 	   var exp = this.expression;
 	    if (/[0-9]/.test(exp)) {
@@ -69,10 +78,12 @@ var calc = {
 	    else { exp = ''; }
 	    return this.expression = exp;
 	},
+
 	getClear: function () {
 		this.expression = '';
 		this.history = '';		
 	},
+
 	addMinus: function () {
 		var exp = this.expression;
 		var first = String(exp)[0];
@@ -85,8 +96,35 @@ var calc = {
 		}
 		return this.expression = exp;
 	},
+
+	getMPluMinus: function(sign){
+		var memory;
+		val = this.expression;
+			if (reg_simb2.test(String(val)[String(val).length - 1])){
+			return this.display1.error();
+			}
+		val = Number(getResult(val));
+		if (Number(this.memory) == undefined){this.memory = 0;}
+		switch (sign){
+			case 'P':
+				memory = Number(this.memory) + val;
+				break;
+			case 'M':
+				memory = Number(this.memory) - val;
+				break;
+			}
+		return this.memory = memory;
+	},
+
+	getMemory: function (){
+		if (Number(this.memory) == undefined){this.memory = 0;}
+		return this.expression += this.memory;
+	},
+
 	buttons: function (val){
 		switch (true){
+			case val == 'MR': this.getMemory(val); break;
+			case /[PM]/.test(val): this.getMPluMinus(val); break;
 			case val == 'minus': this.addMinus(); break;
 			case val == 'clear': this.getClear(); break;
 			case val == 'insexp': this.insertExp(); break;
@@ -99,16 +137,16 @@ var calc = {
 }
 
 function Display(idElem,) {
-		this.idElement = idElem;
-		Object.defineProperty (this, 'outputDisplay', {
-		   get: function() {
-		      element = document.getElementById(this.idElement);
-		    	setSizeId(this.idElement, this.expression);
-		    	element.value = this.expression;
-		   }
-		});
-		this.error = function(){ifErrorId(this.idElement);};
-	}
+	this.idElement = idElem;
+	Object.defineProperty (this, 'outputDisplay', {
+	    get: function() {
+	    	element = document.getElementById(this.idElement);
+    		setSizeId(this.idElement, this.expression);
+    		element.value = this.expression;
+	    }
+	});
+	this.error = function(){ifErrorId(this.idElement);};
+}
 
 Object.defineProperty (calc.display1, 'expression', {get: function() {return calc.expression;}});	
 Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});		
