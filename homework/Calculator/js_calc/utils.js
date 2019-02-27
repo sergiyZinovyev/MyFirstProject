@@ -154,9 +154,12 @@ function textWidth(text, fontSize, fontFamily) {
 
     document.body.appendChild(tag);
 
-    var result = tag.clientWidth;
-
+    var result1 = tag.clientWidth;
+    var result2 = tag.clientHeight;
     document.body.removeChild(tag);
+    var result = [];
+    result[0] = result1;
+    result[1] = result2;
 
     return result;
 }
@@ -170,12 +173,13 @@ function setSizeId(id, val){
 	/*element.style.fontSize = 'revert';
 	alert(getComputedStyle(element).fontSize);
 	var size = parseInt(getComputedStyle(element).fontSize);*/
-	var size = 50;
+	var size = 80;
 	var font = getComputedStyle(element).fontFamily;
 	var width = element.clientWidth;
+	var height = element.clientHeight;
 
-		for (var i = 1; i < 50; i++) {
-			if(textWidth(val, size, font) < width){
+		for (var i = 1; i < 80; i++) {
+			if(textWidth(val, size, font)[0] < width && textWidth(val, size, font)[1] < height*1.4){
 			var size_id = size + 'px';
 			break;
 			}
