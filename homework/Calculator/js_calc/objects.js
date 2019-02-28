@@ -120,9 +120,14 @@ var calc = {
 		if (Number(this.memory) == undefined){this.memory = 0;}
 		return this.expression += this.memory;
 	},
+	
+  clearMemory: function (){
+	return this.memory = '';
+  },
 
 	buttons: function (val){
 		switch (true){
+			case val == 'MC': this.clearMemory(); break;
 			case val == 'MR': this.getMemory(val); break;
 			case /[PM]/.test(val): this.getMPluMinus(val); break;
 			case val == 'minus': this.addMinus(); break;

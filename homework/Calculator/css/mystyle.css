@@ -171,7 +171,18 @@
 	background: #d9d9d9;
 	border: 1px solid #b3b3b3;
 }
+/*---------------------------------------------*/
 
+#memory_menu{
+	display: none;
+	width: 98%;
+	margin: 1%;
+	position: absolute;
+	background-color: #fbfbfb;
+	height: 60.3%;
+	padding: 3px;
+	z-index: 5;
+}
 /*---------------------------------------------*/
 
 .buttons_c{ /*блок з основними кнопками*/

@@ -154,6 +154,15 @@ function offCalc(){
 	//visibleElementByClass('ico');
 }
 
+function mem(){
+	var item = document.getElementById('memory_menu');
+	var prop = window.getComputedStyle(item).display;
+	if (prop == 'block'){
+		item.style.display = "none";
+		}
+	else {item.style.display = "block";}
+}
+
 function isBigCalc(){
 	//збільшує/зменшує розмір калькулятора
 	  var element = document.getElementsByClassName('calc')[0]; 
