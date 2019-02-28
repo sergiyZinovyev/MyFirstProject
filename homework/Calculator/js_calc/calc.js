@@ -136,9 +136,6 @@ var display1 = document.getElementById('display1');
 	display1.value+= memory;
 }*/
 
-function getMClear(){
-	memory = 0;
-}
 
 //-----------------------------------------------------------//
 //                    функції візуалізації                   
@@ -152,15 +149,6 @@ function onCalc(){
 function offCalc(){
 	visibleElementByClass('calc');
 	//visibleElementByClass('ico');
-}
-
-function mem(){
-	var item = document.getElementById('memory_menu');
-	var prop = window.getComputedStyle(item).display;
-	if (prop == 'block'){
-		item.style.display = "none";
-		}
-	else {item.style.display = "block";}
 }
 
 function isBigCalc(){

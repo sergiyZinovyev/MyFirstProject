@@ -181,6 +181,7 @@
 	background-color: #fbfbfb;
 	height: 60.3%;
 	padding: 3px;
+	overflow: auto;
 	z-index: 5;
 }
 /*---------------------------------------------*/

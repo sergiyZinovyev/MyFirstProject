@@ -136,6 +136,19 @@ function visibleElementByClass(name, item){
 	}
 }
 
+function visibleElementById(id){
+	//відображує або приховує вказаний елемент заданого id
+	//id - елемента
+	var item = document.getElementById(id);
+	var prop = window.getComputedStyle(item).display;
+	if (prop == 'block'){
+		item.style.display = "none";
+		}
+	else {
+		item.style.display = "block";
+	}
+}
+
 function ifErrorId(id){
 	document.getElementById(id).style.color = 'red';
 	setTimeout(function(){document.getElementById(id).style.color = 'black';},200);

@@ -4,8 +4,6 @@ var calc = {
 
 	history: '',
 
-	memory: '',
-
 	set btn (num) { 
 		var exp = this.expression;
 		if (String(exp).length > 200) {
@@ -97,6 +95,10 @@ var calc = {
 		return this.expression = exp;
 	},
 
+//-------------------------memory------------------------------//
+
+	memory: new Array(),
+
 	getMPluMinus: function(sign){
 		var memory;
 		val = this.expression;
@@ -104,29 +106,72 @@ var calc = {
 			return this.display1.error();
 			}
 		val = Number(getResult(val));
-		if (Number(this.memory) == undefined){this.memory = 0;}
+		//alert (this.memory[0]);
+		if (this.memory[0] == undefined){this.memory[0] = 0;}
+		//alert (this.memory[0]);
 		switch (sign){
 			case 'P':
-				memory = Number(this.memory) + val;
+				memory = Number(this.memory[0]) + Number(val);
 				break;
 			case 'M':
-				memory = Number(this.memory) - val;
+				memory = Number(this.memory[0]) - Number(val);
 				break;
 			}
-		return this.memory = memory;
+		this.memory[0] = memory;
+		var div = document.createElement('div');
+  		div.id = "memory1";
+  		div.style.width = '100%';
+  		div.style.height = '10%';
+  		div.style.background = '#f4f4f4';
+  		div.style.fontSize = '16px';
+  		div.style.marginBottom = '2px';
+  		div.style.textAlign = 'right';
+  		div.onClick = 'calc.buttons(\'MR\')';
+  		div.innerHTML = this.memory[0];
+		memory_menu.insertBefore(div, memory_menu.firstChild);
 	},
 
 	getMemory: function (){
-		if (Number(this.memory) == undefined){this.memory = 0;}
-		return this.expression += this.memory;
+		if (this.memory[0] == undefined){this.memory[0] = 0;}
+		return this.expression += this.memory[0];
 	},
 	
-  clearMemory: function (){
-	return this.memory = '';
-  },
+	clearMemory: function (){
+		return this.memory = [];
+	},
+
+	visibleMemoruMenu: function (){
+		return visibleElementById('memory_menu');
+	},
+
+	setMemory: function(){
+		//alert ('test');
+		this.memory.unshift(this.expression);
+		//alert (this.expression);
+		//alert (this.memory);
+		var len = memory_menu.children.length;
+		//alert (len);
+		var div = document.createElement('div');
+		//div.id = "memory1";
+  		div.id = "memory"+(len+1);
+  		div.style.width = '100%';
+  		div.style.height = '10%';
+  		div.style.background = '#f4f4f4';
+  		div.style.fontSize = '16px';
+  		div.style.marginBottom = '2px';
+  		div.style.textAlign = 'right';
+  		div.onclick = function(){calc.buttons('MR');}
+  		div.innerHTML = this.memory[0];
+		memory_menu.insertBefore(div, memory_menu.firstChild);
+		//setSizeId(div.id, this.memory[0]);
+
+	},
+//-------------------------buttons------------------------------//
 
 	buttons: function (val){
 		switch (true){
+			case val == 'MS': this.setMemory(); break;
+			case val == 'MV': this.visibleMemoruMenu(); break;
 			case val == 'MC': this.clearMemory(); break;
 			case val == 'MR': this.getMemory(val); break;
 			case /[PM]/.test(val): this.getMPluMinus(val); break;
@@ -140,6 +185,9 @@ var calc = {
 		this.display2.outputDisplay;
 	}
 }
+
+//-------------------------end object calc------------------------------//
+
 
 function Display(idElem,) {
 	this.idElement = idElem;
