@@ -118,22 +118,20 @@ var calc = {
 				break;
 			}
 		this.memory[0] = memory;
-		var div = document.createElement('div');
-  		div.id = "memory1";
-  		div.style.width = '100%';
-  		div.style.height = '10%';
-  		div.style.background = '#f4f4f4';
-  		div.style.fontSize = '16px';
-  		div.style.marginBottom = '2px';
-  		div.style.textAlign = 'right';
-  		div.onClick = 'calc.buttons(\'MR\')';
-  		div.innerHTML = this.memory[0];
-		memory_menu.insertBefore(div, memory_menu.firstChild);
+		var id = 'memory'+(memory_menu.children.length);
+		alert(document.getElementById(id).innerHTML);
+		//var myDiv = "memory"+memory_menu.children.length;
+		//alert(myDiv);
+  	document.getElementById(id).innerHTML = this.memory[0];
+		alert(document.getElementById(id).innerHTML);
+		
 	},
 
-	getMemory: function (){
+	getMemory: function (item){
 		if (this.memory[0] == undefined){this.memory[0] = 0;}
-		return this.expression += this.memory[0];
+		alert (this.memory);
+		return this.expression += this.memory[item];
+		
 	},
 	
 	clearMemory: function (){
@@ -160,10 +158,27 @@ var calc = {
   		div.style.fontSize = '16px';
   		div.style.marginBottom = '2px';
   		div.style.textAlign = 'right';
-  		div.onclick = function(){calc.buttons('MR');}
+  		div.onclick = function(){
+			    var mr = calc.memory.reverse()[len];
+			    var ce = calc.expression;
+		      alert(mr);
+		      alert(ce);
+		       ce += mr;
+		       alert(ce);
+		       this.expression = ce;
+	        //calc.memory.reverse();
+	        //calc.expression += calc.memory.reverse()[len];
+	        calc.memory.reverse();
+	        alert (this.expression);
+	        document.getElementById('display1').value = this.expression;
+	        //this.display1.outputDisplay;
+	    }
   		div.innerHTML = this.memory[0];
 		memory_menu.insertBefore(div, memory_menu.firstChild);
 		//setSizeId(div.id, this.memory[0]);
+		//var id = 'memory'+(len+1);
+		//alert(id);
+		//alert(document.getElementById(id).innerHTML);
 
 	},
 //-------------------------buttons------------------------------//
@@ -173,7 +188,7 @@ var calc = {
 			case val == 'MS': this.setMemory(); break;
 			case val == 'MV': this.visibleMemoruMenu(); break;
 			case val == 'MC': this.clearMemory(); break;
-			case val == 'MR': this.getMemory(val); break;
+			case val == 'MR': this.getMemory(0); break;
 			case /[PM]/.test(val): this.getMPluMinus(val); break;
 			case val == 'minus': this.addMinus(); break;
 			case val == 'clear': this.getClear(); break;
