@@ -45,7 +45,7 @@
 			    	<button class='butt_m' onClick='calc.buttons(this.innerHTML)'>MC</button>
 			    </div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m ' onClick='calc.buttons(this.innerHTML)'>MR</button>
+			    	<button class='butt_m ' onClick='calc.buttons(String(calc.memory.length-1)+"MR")'>MR</button>
 				</div>
 			    <div class="col-2 size_butt_m">
 			    	<button class='butt_m' onClick='calc.buttons("P")'>M+</button>
@@ -61,10 +61,7 @@
 			    </div>
 			</div>
 			
-			<div id = 'memory_menu'>
-			    <!--<div id="memory1" style="width: 100%; height: 10%; background: #f4f4f4; font-size: 16px; margin-bottom: 2px; text-align: right;">1
-			    </div>-->
-			</div>
+			<div id = 'memory_menu'></div>
 			
 			<div class="row buttons_c">
 			

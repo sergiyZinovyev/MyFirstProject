@@ -106,9 +106,10 @@ var calc = {
 			return this.display1.error();
 			}
 		val = Number(getResult(val));
-		//alert (this.memory[0]);
-		if (this.memory[0] == undefined){this.memory[0] = 0;}
-		//alert (this.memory[0]);
+		if (this.memory[0] == undefined){
+			this.memory[0] = 0;
+			this.createMemoryElement();
+		}
 		switch (sign){
 			case 'P':
 				memory = Number(this.memory[0]) + Number(val);
@@ -117,24 +118,22 @@ var calc = {
 				memory = Number(this.memory[0]) - Number(val);
 				break;
 			}
+		memory = +memory.toFixed(16);
 		this.memory[0] = memory;
 		var id = 'memory'+(memory_menu.children.length);
-		alert(document.getElementById(id).innerHTML);
-		//var myDiv = "memory"+memory_menu.children.length;
-		//alert(myDiv);
-  	document.getElementById(id).innerHTML = this.memory[0];
-		alert(document.getElementById(id).innerHTML);
-		
+  		document.getElementById(id).innerHTML = this.memory[0];
 	},
 
 	getMemory: function (item){
-		if (this.memory[0] == undefined){this.memory[0] = 0;}
-		alert (this.memory);
-		return this.expression += this.memory[item];
-		
+		if (item < 0){return;}
+		//if (this.memory[0] == undefined){this.memory[0] = 0;}
+		var revMem = this.memory.reverse()[item];
+		this.memory.reverse();
+		this.expression += revMem;	
 	},
 	
 	clearMemory: function (){
+		memory_menu.innerHTML = '';
 		return this.memory = [];
 	},
 
@@ -143,44 +142,33 @@ var calc = {
 	},
 
 	setMemory: function(){
-		//alert ('test');
-		this.memory.unshift(this.expression);
-		//alert (this.expression);
-		//alert (this.memory);
-		var len = memory_menu.children.length;
-		//alert (len);
-		var div = document.createElement('div');
-		//div.id = "memory1";
-  		div.id = "memory"+(len+1);
-  		div.style.width = '100%';
-  		div.style.height = '10%';
-  		div.style.background = '#f4f4f4';
-  		div.style.fontSize = '16px';
-  		div.style.marginBottom = '2px';
-  		div.style.textAlign = 'right';
-  		div.onclick = function(){
-			    var mr = calc.memory.reverse()[len];
-			    var ce = calc.expression;
-		      alert(mr);
-		      alert(ce);
-		       ce += mr;
-		       alert(ce);
-		       this.expression = ce;
-	        //calc.memory.reverse();
-	        //calc.expression += calc.memory.reverse()[len];
-	        calc.memory.reverse();
-	        alert (this.expression);
-	        document.getElementById('display1').value = this.expression;
-	        //this.display1.outputDisplay;
-	    }
-  		div.innerHTML = this.memory[0];
-		memory_menu.insertBefore(div, memory_menu.firstChild);
-		//setSizeId(div.id, this.memory[0]);
-		//var id = 'memory'+(len+1);
-		//alert(id);
-		//alert(document.getElementById(id).innerHTML);
-
+		if (this.expression == ''){return}
+		if (getValidLast(this.expression) == false){
+			return this.display1.error();
+		}
+		this.memory.unshift(getResult(this.expression));
+		this.createMemoryElement();
 	},
+
+	createMemoryElement: function(){
+		var len = memory_menu.children.length;
+		var div = document.createElement('div');
+	  		div.id = "memory"+(len+1);
+	  		div.style.width = '100%';
+	  		div.style.height = '10%';
+	  		div.style.background = '#f4f4f4';
+	  		div.style.fontSize = '16px';
+	  		div.style.marginBottom = '2px';
+	  		div.style.textAlign = 'right';
+	  		div.onclick = function(){
+				var arg = String(len)+'MR';
+	  			calc.buttons(arg);
+		    }
+	  		div.innerHTML = this.memory[0];
+		memory_menu.insertBefore(div, memory_menu.firstChild);
+	},
+
+
 //-------------------------buttons------------------------------//
 
 	buttons: function (val){
@@ -188,11 +176,11 @@ var calc = {
 			case val == 'MS': this.setMemory(); break;
 			case val == 'MV': this.visibleMemoruMenu(); break;
 			case val == 'MC': this.clearMemory(); break;
-			case val == 'MR': this.getMemory(0); break;
-			case /[PM]/.test(val): this.getMPluMinus(val); break;
 			case val == 'minus': this.addMinus(); break;
 			case val == 'clear': this.getClear(); break;
 			case val == 'insexp': this.insertExp(); break;
+			case /MR/.test(val): this.getMemory(parseInt(val)); break;
+			case /[PM]/.test(val): this.getMPluMinus(val); break;
 			case /[a-z]/.test(val): this.doMathOper(val); break;
 			default: calc.btn = val;
 		}
@@ -201,7 +189,7 @@ var calc = {
 	}
 }
 
-//-------------------------end object calc------------------------------//
+//-------------------------------end object calc----------------------------------//
 
 
 function Display(idElem,) {
