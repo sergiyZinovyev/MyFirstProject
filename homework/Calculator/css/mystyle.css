@@ -108,7 +108,7 @@
 	border: 1px solid #b3b3b3;
 }
 /*---------------------------------------------*/
-.input2_c{
+#input2_c{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -128,7 +128,7 @@
 	color: #888888;
 }
 /*---------------------------------------------*/
-.input1_c{
+#input1_c{
 	display: flex;
 	justify-content: center;
 	align-items: center;

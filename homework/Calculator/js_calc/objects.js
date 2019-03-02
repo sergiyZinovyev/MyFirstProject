@@ -31,9 +31,9 @@ var calc = {
 		this.expression += num;
 	},
 
-	display1: new Display('display1'),
+	display1: new Display('display1', input1_c),
 
-	display2: new Display('display2'),	
+	display2: new Display('display2', input2_c),	
 
 	doMathOper: function (oper) {
 		var exp = this.expression;
@@ -126,7 +126,6 @@ var calc = {
 
 	getMemory: function (item){
 		if (item < 0){return;}
-		//if (this.memory[0] == undefined){this.memory[0] = 0;}
 		var revMem = this.memory.reverse()[item];
 		this.memory.reverse();
 		this.expression += revMem;	
@@ -192,7 +191,13 @@ var calc = {
 //-------------------------------end object calc----------------------------------//
 
 
-function Display(idElem,) {
+function Display(idElem, idParent) {
+	var elem = document.createElement('input');
+		elem.type = "text";
+		elem.id = idElem;
+		elem.readonly = "readonly";
+		elem.value = "";
+	idParent.insertBefore(elem, idParent.firstChild);
 	this.idElement = idElem;
 	Object.defineProperty (this, 'outputDisplay', {
 	    get: function() {
@@ -205,4 +210,6 @@ function Display(idElem,) {
 }
 
 Object.defineProperty (calc.display1, 'expression', {get: function() {return calc.expression;}});	
-Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});		
+Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});	
+
+
