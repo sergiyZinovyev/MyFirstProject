@@ -98,11 +98,6 @@ function getResult (totalprod, act) {
 	return totalcalc;
 }
 
-/*function getResalt (dd){
-	// обраховує математичний вираз записаний в строковому форматі
-	totalcalc = getSumm(getSumm(dd), 'plus');
-	return totalcalc;
-}*/
 
 function getValidLast(ex) {
 	var last = String(ex)[String(ex).length - 1];

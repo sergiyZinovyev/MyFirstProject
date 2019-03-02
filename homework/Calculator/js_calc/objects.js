@@ -5,6 +5,10 @@ var calc = {
 	history: '',
 
 	set btn (num) { 
+		var none = undefined;
+    var reg_num = /[0-9]/;
+    var reg_simb = /[\+\-\*\/]/;
+    var reg_simb2 = /[\+\-\*\/\.]/;
 		var exp = this.expression;
 		if (String(exp).length > 200) {
 			return this.display1.error();
@@ -208,6 +212,11 @@ function Display(idElem, idParent) {
 	});
 	this.error = function(){ifErrorId(this.idElement);};
 }
+
+
+
+//calc.display1.expression = calc.expression;
+//calc.display2.expression = calc.history;
 
 Object.defineProperty (calc.display1, 'expression', {get: function() {return calc.expression;}});	
 Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});	
