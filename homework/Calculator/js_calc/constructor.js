@@ -1,45 +1,53 @@
-var calc = {
+function Calculator(id) {
 
-	expression: '',
+	//this.idHTML = id;
 
-	history: '',
+	this.expression = '';
 
-	set btn (num) { 
-		var none = undefined;
-    var reg_num = /[0-9]/;
-    var reg_simb = /[\+\-\*\/]/;
-    var reg_simb2 = /[\+\-\*\/\.]/;
-		var exp = this.expression;
-		if (String(exp).length > 200) {
-			return this.display1.error();
-		}
-		if(reg_num.test(exp)){}
-		else if (!isFinite(exp)) {
-			return this.display1.error();
-		}
-		var last = String(exp)[String(exp).length - 1];
-		var before = String(exp)[String(exp).length - 2];
-	  	if (last == '0' && (before == none || reg_simb.test(before)) && reg_num.test(num)){
-			return this.display1.error();
-	  	}	
-	  	if ((last == none || reg_simb2.test(last)) && reg_simb2.test(num)){
-			return this.display1.error();
-		}
-	  	if (num == '.'){
-	    	var current_db = getParsing(exp);
-	    	var last_item = current_db[current_db.length - 1];
-	    	if (/\./.test(last_item)){
-		  		return this.display1.error();
-	  		}
-		}
-		this.expression += num;
-	},
+	this.history = '';
 
-	display1: new Display('display1', input1_c),
+	this.reg = [undefined, /[0-9]/, /[\+\-\*\/]/, /[\+\-\*\/\.]/];
 
-	display2: new Display('display2', input2_c),	
+//-----------------------set expression---------------------------//
 
-	doMathOper: function (oper) {
+	Object.defineProperty (this, 'btn', {
+	    set: function(num) {
+			var exp = this.expression;
+			if (String(exp).length > 200) {
+				return this.display1.error();
+			}
+			if(this.reg[1].test(exp)){}
+			else if (!isFinite(exp)) {
+				return this.display1.error();
+			}
+			var last = String(exp)[String(exp).length - 1];
+			var before = String(exp)[String(exp).length - 2];
+		  	if (last == '0' && (before == this.reg[0] || this.reg[2].test(before)) && this.reg[1].test(num)){
+				return this.display1.error();
+		  	}	
+		  	if ((last == this.reg[0] || this.reg[3].test(last)) && this.reg[3].test(num)){
+				return this.display1.error();
+			}
+		  	if (num == '.'){
+		    	var current_db = getParsing(exp);
+		    	var last_item = current_db[current_db.length - 1];
+		    	if (/\./.test(last_item)){
+			  		return this.display1.error();
+		  		}
+			}
+			this.expression += num;
+	    }
+	});
+
+//-------------------------displays------------------------------//	
+
+	this.display1 = new Display('display1', input1_c);
+
+	this.display2 = new Display('display2', input2_c);	
+
+//----------------------calculator functions---------------------//
+
+	this.doMathOper =  function (oper) {
 		var exp = this.expression;
 		if (getValidLast(exp) == false){
 			return this.display1.error();
@@ -70,23 +78,23 @@ var calc = {
 		exp = +exp.toFixed(16);
 		this.expression = String(exp);
 		this.history = String(display2_text);
-	},
+	};
 
-	insertExp: function () {
+	this.insertExp = function () {
 	   var exp = this.expression;
 	    if (/[0-9]/.test(exp)) {
 		    exp = exp.substring(0, exp.length - 1);
 	    }
 	    else { exp = ''; }
 	    return this.expression = exp;
-	},
+	};
 
-	getClear: function () {
+	this.getClear = function () {
 		this.expression = '';
 		this.history = '';		
-	},
+	};
 
-	addMinus: function () {
+	this.addMinus = function () {
 		var exp = this.expression;
 		var first = String(exp)[0];
 		if (first == undefined) {return;}
@@ -97,16 +105,16 @@ var calc = {
 			exp = exp.substring(1);
 		}
 		return this.expression = exp;
-	},
+	};
 
 //-------------------------memory------------------------------//
 
-	memory: new Array(),
+	this.memory = new Array();
 
-	getMPluMinus: function(sign){
+	this.getMPluMinus = function(sign){
 		var memory;
 		val = this.expression;
-			if (reg_simb2.test(String(val)[String(val).length - 1])){
+			if (this.reg[3].test(String(val)[String(val).length - 1])){
 			return this.display1.error();
 			}
 		val = Number(getResult(val));
@@ -126,34 +134,34 @@ var calc = {
 		this.memory[0] = memory;
 		var id = 'memory'+(memory_menu.children.length);
   		document.getElementById(id).innerHTML = this.memory[0];
-	},
+	};
 
-	getMemory: function (item){
+	this.getMemory = function (item){
 		if (item < 0){return;}
 		var revMem = this.memory.reverse()[item];
 		this.memory.reverse();
 		this.expression += revMem;	
-	},
+	};
 	
-	clearMemory: function (){
+	this.clearMemory = function (){
 		memory_menu.innerHTML = '';
 		return this.memory = [];
-	},
+	};
 
-	visibleMemoruMenu: function (){
+	this.visibleMemoruMenu = function (){
 		return visibleElementById('memory_menu');
-	},
+	};
 
-	setMemory: function(){
+	this.setMemory = function(){
 		if (this.expression == ''){return}
 		if (getValidLast(this.expression) == false){
 			return this.display1.error();
 		}
 		this.memory.unshift(getResult(this.expression));
 		this.createMemoryElement();
-	},
+	};
 
-	createMemoryElement: function(){
+	this.createMemoryElement = function(){
 		var len = memory_menu.children.length;
 		var div = document.createElement('div');
 	  		div.id = "memory"+(len+1);
@@ -169,12 +177,11 @@ var calc = {
 		    }
 	  		div.innerHTML = this.memory[0];
 		memory_menu.insertBefore(div, memory_menu.firstChild);
-	},
+	};
 
+//-------------------------buttons-----------------------------//
 
-//-------------------------buttons------------------------------//
-
-	buttons: function (val){
+	this.buttons = function (val){
 		switch (true){
 			case val == 'MS': this.setMemory(); break;
 			case val == 'MV': this.visibleMemoruMenu(); break;
@@ -189,12 +196,22 @@ var calc = {
 		}
 		this.display1.outputDisplay;
 		this.display2.outputDisplay;
+	};
+
+	/*this.style = {
+		display: "block",
+		width: "320px"
 	}
+
+	document.getElementById(this.idHTML).style.display = this.style.display;
+	document.getElementById(this.idHTML).style.width = this.style.width;*/
+
+	//this.style = StyleCalulator();
+
 }
 
-//-------------------------------end object calc----------------------------------//
-
-
+//-------------------------------end calculator----------------------------------//
+	
 function Display(idElem, idParent) {
 	var elem = document.createElement('input');
 		elem.type = "text";
@@ -211,14 +228,12 @@ function Display(idElem, idParent) {
 	    }
 	});
 	this.error = function(){ifErrorId(this.idElement);};
-}
-
-
-
-//calc.display1.expression = calc.expression;
-//calc.display2.expression = calc.history;
-
-Object.defineProperty (calc.display1, 'expression', {get: function() {return calc.expression;}});	
-Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});	
-
-
+}		
+			
+/*function StyleCalulator() {
+		this.display = "block";
+		this.width = "320px";
+		//idCalc
+		document.getElementById(this.idCalc).style.display = this.display;
+		document.getElementById(this.idCalc).style.width = this.width;			
+}*/

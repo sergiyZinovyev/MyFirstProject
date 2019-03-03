@@ -1,3 +1,7 @@
+var calc = new Calculator('calc');
+Object.defineProperty (calc.display1, 'expression', {get: function() {return calc.expression;}});	
+Object.defineProperty (calc.display2, 'expression', {get: function() {return calc.history;}});	
+//Object.defineProperty (calc.style, 'idCalc', {get: function() {return calc.idHTML;}});	
 
 
 //-----------------------------------------------------------//
@@ -32,7 +36,16 @@ function isBigCalc(){
 	}
 }
 
-
+/*function isBigCalc(){
+	alert(calc.style.width);
+	if (calc.style.width == '320px'){
+		calc.style.width = '600px';
+	}
+	else {
+		calc.style.width = '320px';
+	}
+	alert(calc.style.width);	
+}*/
 
 
 
