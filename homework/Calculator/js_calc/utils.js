@@ -115,33 +115,32 @@ function visibleElementByClass(name, item){
 	//item - порядковий номер контейнера (рахується від 0)
 	//по замовчуванню item=0 (перший елемент)
 	if (item == undefined) {item = 0;}
-	element = document.getElementsByClassName(name)[item]; 
-	var prop = window.getComputedStyle(element).display;
+	element = $('.'+name)[item]; 
+	var prop = $(element).css('display');
 	if (prop == 'none') {
-		element.style.display = 'block';
+		$(element).css('display', 'block');
 		setTimeout ( function( ) {
-			element.style.transition = '0.5s';
-			element.style.opacity = '1';
+			$(element).css({
+				transition: '0.5s',
+				opacity: 1
+			});
 			}, 100);
 	}
 	else {
-		element.style.transition = '0.5s';
-		element.style.opacity = '0';
-		setTimeout ("element.style.display = 'none'", 500);
+		$(element).css({
+				transition: '0.5s',
+				opacity: 0
+			});
+		setTimeout ("$(element).css('display', 'none')", 500);
 	}
 }
 
 function visibleElementById(id){
 	//відображує або приховує вказаний елемент заданого id
 	//id - елемента
-	var item = document.getElementById(id);
-	var prop = window.getComputedStyle(item).display;
-	if (prop == 'block'){
-		item.style.display = "none";
-		}
-	else {
-		item.style.display = "block";
-	}
+	var item = $('#' + id);
+	$(item).toggle(500);
+
 }
 
 function ifErrorId(id){

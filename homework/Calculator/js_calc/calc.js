@@ -20,7 +20,7 @@ function offCalc(){
 
 function isBigCalc(){
 	//збільшує/зменшує розмір калькулятора
-	  var element = document.getElementsByClassName('calc')[0]; 
+	  var element = $('.calc')[0]; 
 		var prop = window.getComputedStyle(element).width;
 	if (prop == '320px') {
 		element.style.width = '600px';
