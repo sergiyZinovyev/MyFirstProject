@@ -124,7 +124,7 @@ function visibleElementByClass(name, item){
 				transition: '0.5s',
 				opacity: 1
 			});
-			}, 100);
+			}, 1);
 	}
 	else {
 		$(element).css({
@@ -136,24 +136,38 @@ function visibleElementByClass(name, item){
 }
 
 function visibleElementById(id){
-	//відображує або приховує вказаний елемент заданого id
-	//id - елемента
-	var item = $('#' + id);
-	$(item).toggle(500);
-
+	$('#' + id).toggle(200);
 }
 
 function ifErrorId(id){
-	document.getElementById(id).style.color = 'red';
-	setTimeout(function(){document.getElementById(id).style.color = 'black';},200);
+	$('#' + id).css('color', 'red');
+	setTimeout(function(){$('#' + id).css('color', 'black');},200);
 }	
 
 function textWidth(text, fontSize, fontFamily) {
-	//отримати ширину заданого тексту
+	//отримати ширину та висоту заданого тексту
 	//при заданому розмірі та стилі шрифта
+
+/*
+    var tag = $('body').append('<div>');
+    $(tag).css({
+    	position: "absolute",
+	    whiteSpace: "nowrap",
+	    fontFamily: fontFamily,
+	    fontSize: fontSize+"px"
+	});
+	$(tag).text(text);
+	var result1 = $(tag).width();
+    var result2 = $(tag).height();
+
+    $(tag).remove();
+*/
+
+
+
+
     var tag = document.createElement("div");
     tag.style.position = "absolute";
-    //tag.style.left = "-999em";
     tag.style.whiteSpace = "nowrap";
     tag.style.fontFamily = fontFamily;
     tag.style.fontSize = fontSize+"px";
@@ -164,6 +178,9 @@ function textWidth(text, fontSize, fontFamily) {
     var result1 = tag.clientWidth;
     var result2 = tag.clientHeight;
     document.body.removeChild(tag);
+    
+
+
     var result = [];
     result[0] = result1;
     result[1] = result2;
@@ -176,10 +193,6 @@ function setSizeId(id, val){
 	// id елемента
 	// val - значення яке потрібно вивести на екран
 	var element = document.getElementById(id);
-
-	/*element.style.fontSize = 'revert';
-	alert(getComputedStyle(element).fontSize);
-	var size = parseInt(getComputedStyle(element).fontSize);*/
 	var size = 80;
 	var font = getComputedStyle(element).fontFamily;
 	var width = element.clientWidth;

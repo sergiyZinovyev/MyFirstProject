@@ -148,7 +148,7 @@ function Calculator(id) {
 		return this.memory = [];
 	};
 
-	this.visibleMemoruMenu = function (){
+	this.visibleMemoryMenu = function (){
 		return visibleElementById('memory_menu');
 	};
 
@@ -184,7 +184,7 @@ function Calculator(id) {
 	this.buttons = function (val){
 		switch (true){
 			case val == 'MS': this.setMemory(); break;
-			case val == 'MV': this.visibleMemoruMenu(); break;
+			case val == 'MV': this.visibleMemoryMenu(); break;
 			case val == 'MC': this.clearMemory(); break;
 			case val == 'minus': this.addMinus(); break;
 			case val == 'clear': this.getClear(); break;
