@@ -147,25 +147,19 @@ function ifErrorId(id){
 function textWidth(text, fontSize, fontFamily) {
 	//отримати ширину та висоту заданого тексту
 	//при заданому розмірі та стилі шрифта
-
-/*
-    var tag = $('body').append('<div>');
-    $(tag).css({
+    var tag = $('body').append('<div id = "temp">');
+    $('#temp').css({
     	position: "absolute",
 	    whiteSpace: "nowrap",
 	    fontFamily: fontFamily,
 	    fontSize: fontSize+"px"
 	});
-	$(tag).text(text);
-	var result1 = $(tag).width();
-    var result2 = $(tag).height();
+	$('#temp').text(text);
+	var result1 = $('#temp').width();
+    var result2 = $('#temp').height();
 
-    $(tag).remove();
-*/
-
-
-
-
+    $('#temp').remove();
+/*
     var tag = document.createElement("div");
     tag.style.position = "absolute";
     tag.style.whiteSpace = "nowrap";
@@ -177,9 +171,8 @@ function textWidth(text, fontSize, fontFamily) {
 
     var result1 = tag.clientWidth;
     var result2 = tag.clientHeight;
-    document.body.removeChild(tag);
-    
-
+    document.body.removeChild(tag);   
+*/
 
     var result = [];
     result[0] = result1;
@@ -192,11 +185,18 @@ function setSizeId(id, val){
 	// зменшує розмір шрифта
 	// id елемента
 	// val - значення яке потрібно вивести на екран
+	var size = 80;
+	var font = $('#' + id).css('font-family')
+	var width = $('#' + id).width();
+	var height = $('#' + id).height();
+
+/*
 	var element = document.getElementById(id);
 	var size = 80;
 	var font = getComputedStyle(element).fontFamily;
 	var width = element.clientWidth;
 	var height = element.clientHeight;
+*/
 
 		for (var i = 1; i < 80; i++) {
 			if(textWidth(val, size, font)[0] < width && textWidth(val, size, font)[1] < height*1.4){
@@ -206,7 +206,8 @@ function setSizeId(id, val){
 			else {size = size - 1;}
 		}
 
-    return document.getElementById(id).style.fontSize = size_id;
+    //return document.getElementById(id).style.fontSize = size_id;
+    return $('#' + id).css('font-size', size_id);
 }
 
 // отримання поточного розміру шрифта
