@@ -7,7 +7,7 @@
 		<title>Calculator</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/mystyle.css">
-		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="calc">
@@ -38,22 +38,22 @@
 
 			<div class="row memory_c">
 				<div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='calc.buttons(this.innerHTML)'>MC</button>
+			    	<button class='butt_m' onClick='calc.getBtn(this.innerHTML)'>MC</button>
 			    </div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m ' onClick='calc.buttons(String(calc.memory.length-1)+"MR")'>MR</button>
+			    	<button class='butt_m ' onClick='calc.getBtn(String(calc.memory.length-1)+"MR")'>MR</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='calc.buttons("P")'>M+</button>
+			    	<button class='butt_m' onClick='calc.getBtn("P")'>M+</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='calc.buttons("M")'>M-</button>
+			    	<button class='butt_m' onClick='calc.getBtn("M")'>M-</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='calc.buttons(this.innerHTML)'>MS</button>
+			    	<button class='butt_m' onClick='calc.getBtn(this.innerHTML)'>MS</button>
 				</div>
 			    <div class="col-2 size_butt_m">
-			    	<button class='butt_m' onClick='calc.buttons("MV")'>M<sup>&#9660</sup></button>
+			    	<button class='butt_m' onClick='calc.getBtn("MV")'>M<sup>&#9660</sup></button>
 			    </div>
 			</div>
 			
@@ -62,76 +62,76 @@
 			<div class="row buttons_c">
 			
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("pers")'>%</button>
+			    	<button class='butt_b' onClick='calc.getBtn("pers")'>%</button>
 			    </div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("root")'>&#8730</button>
+			    	<button class='butt_b' onClick='calc.getBtn("root")'>&#8730</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b' onClick='calc.buttons("square")'>X<sup>2</sup></button>
+					<button class='butt_b' onClick='calc.getBtn("square")'>X<sup>2</sup></button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("div")'>1/x</button>
+			    	<button class='butt_b' onClick='calc.getBtn("div")'>1/x</button>
 				</div>
 			    <div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("clear")'>CE</button>
+			    	<button class='butt_b' onClick='calc.getBtn("clear")'>CE</button>
 			    </div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("clear")'>C</button>
+			    	<button class='butt_b' onClick='calc.getBtn("clear")'>C</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b' onClick='calc.buttons("insexp")'>&#9003</button>
+					<button class='butt_b' onClick='calc.getBtn("insexp")'>&#9003</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='calc.buttons("/")'>&#247</button>
+			    	<button class='butt_b func' onClick='calc.getBtn("/")'>&#247</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>7</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>7</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>8</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>8</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>9</button>
+					<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>9</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='calc.buttons("*")'>×</button>
+			    	<button class='butt_b func' onClick='calc.getBtn("*")'>×</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>4</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>4</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>5</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>5</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>6</button>
+					<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>6</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='calc.buttons(this.innerHTML)'>-</button>
+			    	<button class='butt_b func' onClick='calc.getBtn(this.innerHTML)'>-</button>
 				</div>
 				<div class="col-3 size_butt_b">
-		    		<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>1</button>
+		    		<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>1</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>2</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>2</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>3</button>
+					<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>3</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='calc.buttons(this.innerHTML)'>+</button>
+			    	<button class='butt_b func' onClick='calc.getBtn(this.innerHTML)'>+</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b' onClick='calc.buttons("minus")'>&plusmn</button>
+			    	<button class='butt_b' onClick='calc.getBtn("minus")'>&plusmn</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b b2' onClick='calc.buttons(this.innerHTML)'>0</button>
+			    	<button class='butt_b b2' onClick='calc.getBtn(this.innerHTML)'>0</button>
 				</div>
 				<div class="col-3 size_butt_b">
-					<button class='butt_b' onClick='calc.buttons(this.innerHTML)'>.</button>
+					<button class='butt_b' onClick='calc.getBtn(this.innerHTML)'>.</button>
 				</div>
 				<div class="col-3 size_butt_b">
-			    	<button class='butt_b func' onClick='calc.buttons("calc")'>=</button>
+			    	<button class='butt_b func' onClick='calc.getBtn("calc")'>=</button>
 				</div>
 			</div>
 		</div>
@@ -140,11 +140,11 @@
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    	<script src="js/bootstrap.min.js"></script>
+    	<script src="js/bootstrap/bootstrap.min.js"></script>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    	<script src="js_calc/utils.js"></script>
-    	<script src="js_calc/constructor.js"></script>
-	    <script src="js_calc/calc.js"></script>
+    	<script src="js/lib/calc/utils.js"></script>
+    	<script src="js/lib/calc/constructor.js"></script>
+	    <script src="js/lib/calc/calc.js"></script>
 	</body>
 </html>
 
