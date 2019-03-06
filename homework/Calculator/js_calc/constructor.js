@@ -213,22 +213,22 @@ function Calculator(id) {
 //-------------------------------end calculator----------------------------------//
 	
 function Display(idElem, idParent) {
-	var elem = document.createElement('input');
-		elem.type = "text";
-		elem.id = idElem;
-		elem.readonly = "readonly";
-		elem.value = "";
-	idParent.insertBefore(elem, idParent.firstChild);
-	this.idElement = idElem;
+	var myInput = $(idParent).append('<input id='+idElem+'>');
+	$(myInput).attr({
+		'type': "text",
+		'readonly': "readonly"
+	});
 	Object.defineProperty (this, 'outputDisplay', {
 	    get: function() {
-	    	element = document.getElementById(this.idElement);
-    		setSizeId(this.idElement, this.expression);
-    		element.value = this.expression;
+	    	element = document.getElementById(idElem);
+    		setSizeId(idElem, this.expression);
+    		$('#' + idElem).val(this.expression);
 	    }
 	});
-	this.error = function(){ifErrorId(this.idElement);};
+	this.error = function(){ifErrorId(idElem);};
 }		
+
+
 			
 /*function StyleCalulator() {
 		this.display = "block";
