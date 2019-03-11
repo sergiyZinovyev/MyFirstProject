@@ -220,7 +220,7 @@ function Display(idElem, idParent) {
 	});
 	Object.defineProperty (this, 'outputDisplay', {
 	    get: function() {
-	    	element = document.getElementById(idElem);
+	    	//element = document.getElementById(idElem);
     		setSizeId(idElem, this.expression);
     		$('#' + idElem).val(this.expression);
 	    }
