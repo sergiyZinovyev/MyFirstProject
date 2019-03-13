@@ -117,15 +117,11 @@ td{
 }
 
 /*bootstrap*/
-.center {
+.center { 
 	display: flex;
 	justify-content: center;
 }
-.r100{
-	height: 100%;
-}
-.gen_block_b{
-	height: 277px;
+.size{
 	width: 300px;
 }
 .block_b{
@@ -134,21 +130,15 @@ td{
 	align-items: flex-end;
 	justify-content: flex-end;
 	color: #ffffff;
-	box-sizing: border-box;
+	padding-bottom: 7px;
+	padding-right: 7px;
 	border-right: 7px solid #ffffff;
 	border-bottom: 7px solid #ffffff;
-	height: 50%;
+	height: 138.5px;
 }
-.block2_b{
-	display: flex;
-	background: #2b3e50;
-	align-items: flex-end;
-	justify-content: flex-end;
-	color: #ffffff;
-	box-sizing: border-box;
-	border-right: 7px solid #ffffff;
+.addition_block_b{
 	border-bottom: 3px solid #ffffff;
-	height: 33.333333%;
+	height: 92.3333px;
 }
 
 
