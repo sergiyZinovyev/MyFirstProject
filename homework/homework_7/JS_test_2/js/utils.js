@@ -51,7 +51,7 @@ function getJoinArr(m){
 		if (m[i] == '') {continue;}
 		var new_arr = m[i];
 		var text;
-	  new_arr = String(new_arr);
+	    new_arr = String(new_arr);
 		for(var n = 0; n<new_arr.length; n++){
 			if(n == 0){
 				text = new_arr[n].toUpperCase();

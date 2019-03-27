@@ -1,0 +1,495 @@
+/*основний шрифт та фон сторінки*/
+body {
+  font-family: 'Lobster', cursive;
+  background-image: url(../img/pattern/pattern3.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: #004d66;
+}
+h1 {
+  font-size: 36px;
+}
+a {
+  text-decoration: none;
+  color: #004d66;
+}
+/*-----------------------визначення grid елементів------------------------*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "header header header header"
+                        "jumbotron jumbotron jumbotron jumbotron"
+                        ". blog blog ."
+                        ". photo photo ."
+                        "footer footer footer footer";
+}
+.grid-item-header {
+  margin-top: 48px;
+  grid-area: header;
+}
+.grid-item-jumbotron {
+  grid-area: jumbotron;
+}
+.grid-item-blog {
+  grid-area: blog;
+}
+.grid-item-photo {
+  grid-area: photo;
+  max-width: 980px; /* максимальна ширина контейнера */
+  margin: 5%;
+  text-align: center;
+  /*color: #004d66;*/
+}
+.grid-item-footer {
+  grid-area: footer;
+  background-color: #004d66;
+}
+/*------------------------------------------------------------------------*/
+
+/*-------------------------------кнопки-----------------------------------*/
+
+/*основний стиль кнопки*/
+.button{
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+.button:hover{
+  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+  color: #F137A6;
+}
+
+/*кнопка - додатковий стиль №1*/
+.b1 { 
+  padding: 5px 10px;
+  margin: 7px;
+  border-radius: 7px;
+  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+  letter-spacing: 2px;
+  color: #F137A6;
+  transition: .15s ease-in-out;
+}
+.b1:hover {
+  box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6; 
+  color: white; 
+} 
+/*------------------------------------------------------------------------*/
+
+/*----------------головне меню завжди зафіксоване зверху------------------*/
+
+/*загальний стиль меню*/
+.menu {
+  position: fixed;
+  top: 0px;
+  background-color: #004d66;
+  width: 100%;
+  padding: 3px;
+  z-index: 1;
+}
+
+/*стилі іконки для адаптованого меню*/
+.menu__icon {
+  display: none; /*нивидима при стандартному розмірі екрана*/
+  width: 45px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.menu__icon span { /*загальний стиль полосок іконки*/
+  display: block;
+  position: absolute;
+  height: 9px;
+  width: 100%;
+  background: #F137A6;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+/*позиціонування полосок в 3 горизонтальні лінії*/
+.menu__icon span:nth-child(1) { /*позиція першої полоски*/
+  top: 2px;
+}
+.menu__icon span:nth-child(2), 
+.menu__icon span:nth-child(3) { /*...другої...*/
+  top: 15px;
+}
+.menu__icon span:nth-child(4) { /*...третьої...*/
+  top: 28px;
+}
+/*позиціонування полосок у вигляді хрестика*/
+.menu.menu_state_open .menu__icon span:nth-child(1),
+.menu.menu_state_open .menu__icon span:nth-child(4) { 
+  top: 18px;     /* перша і остання полоски           */                                     
+  width: 0%;     /* зміщуються до центру і зникають   */
+  left: 50%;     /* друга і третя розвертаються кожна */
+}                /* на 45 градусів, утворюючи хрестик */
+.menu.menu_state_open .menu__icon span:nth-child(2) {
+  transform: rotate(45deg);
+}
+.menu.menu_state_open .menu__icon span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.menu.menu_state_open .menu__links {
+  display: block; /*відображати приховане меню*/
+}
+
+@media (max-width: 800px) {
+  .menu__icon{
+    display: inline-block; /*відображати іконку меню*/
+  }
+  .menu__links {
+    position: fixed;
+    display: none; /*приховувати меню поки не натиснута іконка*/
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-top: 45px;
+    background-color: #004d66;
+    z-index: 1000;
+  }
+  .menu__links-item {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+/*-----------------------------------------------------------------------*/
+
+/*------------------------блок з назвою сайта----------------------------*/
+.header	{
+  margin: 5px 0px;
+  background-color: #F137A6;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+}
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------jumbotron---------------------------------*/
+.jumbotron {
+  background-image: url(../img/jumbotron/jumbotron.jpg);
+  background-size: cover;
+  background-position: top center;
+  padding-top: 80px;
+  min-height: 250px;
+  text-align: center;
+  color: #cccccc;
+}
+/*-----------------------------------------------------------------------*/
+
+/*----------------------блок з основним контентом------------------------*/
+
+/*загальний блок для всіх статей блогу*/
+.blog {
+  max-width: 980px; /* максимальна ширина контейнера */
+  text-align: center;
+  margin-top: 30px;
+}
+
+/*блок для прев'ю статей*/
+.content_blog {
+  width: 46%; /*ширина блога 2 стовпчика*/
+  margin: 2%;
+  float: left;
+  overflow: hidden; /*приховує контент який не вміщується в блок*/
+  max-height: 550px;
+}
+.content_blog img {  /*    максимальна ширина фото       */
+  max-width: 100%;   /*    не більше розміру контейнера  */
+}
+.content_blog h1, h2, hr {
+  text-align: center;
+  line-height: 36px; /*висота рядка*/
+}
+.content_blog hr{
+ font-weight: bold;
+}
+.content_blog p {
+  line-height: 25px; /*висота рядка*/
+  text-align: justify;
+}
+.content_blog a:hover {
+  opacity: 0.5; /*прозорість 50% при наведенні*/
+}
+@media (max-width: 800px) {
+  .content_blog{
+    width: 96%; /*ширина блога 1 стовпчик*/
+  }
+}
+/*-----------------------------------------------------------------------*/
+
+/*---------------------------------footer--------------------------------*/
+
+/*контейнер для футера*/
+.container2 {
+  padding: 5px 10px;
+}
+.container2 h2{
+  font-size: 16px;
+  color: #FFFFFF;
+  padding-top: 15px;
+  line-height: 20px;
+} 
+/*спрайт меню*/ 
+.container2 a {
+  background-image: url(../img/icons/sprites2.png);
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  transition: all 0.2s ease-out;
+  margin-right: 10px;
+}
+a.facebook { 
+  background-position: left top; 
+}
+a.twitter { 
+  background-position: -25px top; 
+}
+a.youtube { 
+  background-position: -50px top; 
+}
+a.instagram { 
+  background-position: -75px top; 
+}
+a:hover {
+  background-position-y: bottom;
+}
+/*-----------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------*/
+/*                                                                       */
+/*            Додаткові стилі для сторінки з окремою статтею             */
+/*                                                                       */
+/*-----------------------------------------------------------------------*/
+
+
+/* загальний контейнер для статті */
+.container {
+  width: 90%; /* ширина блока-контейнера */
+  max-width: 980px; /* максимальна ширина контейнера */
+  margin: 5%;
+  text-align: center;
+}
+.container img {      /*  максимальна ширина фото      */         
+  max-width: 100%;    /*  не більше розміру контейнера */
+}
+.container h1 {       /*відступ для заголовку статті*/
+  margin-top: 20px;
+}
+.container hr {       /*  винести наверх, щоб не            */
+  position: relative; /*  перекривала тінь сусіднього блока */
+  font-weight: bold;
+}
+
+/* блок для тексту статті */
+.article_text {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /*напівпрозорий фон*/
+  box-shadow: 0px 0px 83px 35px rgba(255,255,255,1); /*розмита тінь*/
+  padding: 10px;
+  border-radius: 20px; 
+}
+.article_text p {
+  line-height: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  white-space: pre-wrap; /*передає текст зі всіма відступами та переносами*/
+  text-align: justify;
+}
+@media (max-width: 800px){
+  .container h1{
+    font-size: 30px;
+  }
+  .container h2{
+    font-size: 12px;
+  }
+  .article_text p{
+    line-height: 17px;
+    font-size: 14px;
+  }
+}
+/*-----------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------*/
+/*                                                                       */
+/*             Додаткові стилі для сторінки з фото-галереєю              */
+/*                                                                       */
+/*-----------------------------------------------------------------------*/
+
+.grid-item-photo h1 { /*назва сторінки*/
+  margin-bottom: 15px;
+}
+.photo { /*загальний блок для фото з відписом*/
+ 	background-color: #ffffff;
+  float: left;
+  width: 29.33%;
+  padding: 1% 1% 0% 1%;
+  margin: 1%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3),   /* тінь для блоку з фото */
+              -23px 0 20px -23px rgba(0, 0, 0, .6),
+              23px 0 20px -23px rgba(0, 0, 0, .6),
+              inset 0 0 40px rgba(0, 0, 0, .1);
+}
+.photo img {
+  max-width: 100%;
+}
+/*-------створення ефектів для блоку з фото при наведенні курсору-------*/
+.photo a:hover {
+  opacity: 0.5;
+}
+.photo a {
+  display: block;
+  position: relative;
+}
+.photo a:after { /*стилі для іконки активації фото*/
+  content: '';
+  background: transparent url(../img/icons/eye-icon.png) no-repeat center;
+  width: 52px;
+  height: 35px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden; /* приховати іконку поки не наведений курсор */
+}
+.photo:hover > a:after { /*відобразити іконку при наведенні*/
+  visibility: visible;
+}
+/*-----------------------------------------------------------------------*/
+
+figcaption { /*підпис для фото*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  height: 30px;
+  overflow: hidden;         /*   приховувати текст якщо не влізає    */
+  text-overflow: ellipsis;  /*   та ставити три крапки в кінці       */
+  color: #999999;
+}
+@media (max-width: 800px) {
+  figcaption {
+    font-size: 10px;
+  }
+}
+
+/*-----------------------------------------------------------------------*/
+/*                                                                       */
+/*                    Додаткові стилі для адмін-панелі                   */
+/*                                                                       */
+/*-----------------------------------------------------------------------*/
+
+.admin_panel{
+  margin: 1%;
+  width: 98%;
+  font-family: 'Open Sans', sans-serif;
+  text-align: left;
+}
+.admin_panel td{
+  border: 2px solid;
+  /*border-bottom: 2px solid;*/
+  border-color: #004d66;
+  padding: 20px 5px 5px 5px;
+  vertical-align: bottom;
+}
+.admin_panel th{
+  /*border-bottom: 2px solid;
+  border-color: #004d66;*/
+  /*padding: 5px;*/
+  /*text-align: center;*/
+}
+.admin_panel h2{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: left;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.admin_panel .button{
+  text-decoration: none;
+  outline: none;
+  /*display: inline-block;*/
+  padding: 10px 25px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
+  /*font-family: 'Montserrat', sans-serif;*/
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+  transition: .15s ease-in-out;
+}
+
+.admin_panel .button:hover{
+  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+  color: #F137A6;
+}
+td img{
+  border: 1px solid #bfd2d9;
+}
+form {
+  margin-top: 150px;
+}
+form .button {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+    background-image: linear-gradient(to bottom, #004d66, #004d66);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .55);
+    padding: 5px 25px;
+    border-radius: 15px;
+}
+.add_articles_form{
+  margin: auto;
+}
+.add_articles_form tr td {
+  padding: 10px;
+  vertical-align: top;
+}
+.add_text{
+  width: 960px;
+  height: 500px;
+}
+.form-item{
+  width: 200px;
+}
+.form-add-photo{
+  width: 200px;
+  border: 0px;
+  background-color: rgba(50, 50, 50, 0.01);
+  font-family: 'Open Sans', sans-serif;
+  color: #004d66;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add_form_photo {
+  margin: 10;
+  width: 100px;
+  border: 1px solid;
+  float: left;
+}
