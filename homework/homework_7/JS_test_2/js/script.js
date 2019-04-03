@@ -1,3 +1,7 @@
+alert('test');
+alert(20e-1['string'](2));
+alert();
+	
 function getCountRepeat(){
 	var min2 = Number(document.getElementById('input1_random').value);
 	var max2 = Number(document.getElementById('input2_random').value);

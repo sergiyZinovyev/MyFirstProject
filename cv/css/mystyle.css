@@ -5,10 +5,24 @@
 	margin-bottom: 2em;
 }
 .elem2{
-	margin-bottom: 1em;
+	margin-bottom: 30px;
+
 }
 .wide{
-	max-width: 920px;
+	max-width: 1200px;
+}
+.break{
+	word-wrap: break-word;
+}
+.yellow-text{
+	color: #ffcc00;
+}
+.gap{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+.logo{
+	max-height: 70px;
 }
 
 
