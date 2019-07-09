@@ -9,13 +9,14 @@
 
 }
 .wide{
-	max-width: 1200px;
+	max-width: 920px;
 }
 .break{
 	word-wrap: break-word;
 }
 .yellow-text{
 	color: #ffcc00;
+	font-size: 25px;
 }
 .gap{
 	margin-top: 30px;
@@ -24,7 +25,9 @@
 .logo{
 	max-height: 70px;
 }
-
+.elem2 a{
+	font-size: 12px;
+}
 
 
 
